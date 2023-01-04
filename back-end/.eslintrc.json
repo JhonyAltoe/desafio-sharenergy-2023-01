@@ -1,7 +1,7 @@
 {
     "extends": "standard-with-typescript",
     "parserOptions": {
-      "project": "./back-end/tsconfig.json"
+      "project": "./tsconfig.json"
     },
     "rules": {
     }
