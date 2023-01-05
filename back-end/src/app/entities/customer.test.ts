@@ -58,7 +58,7 @@ describe('Customer', () => {
   describe('Successful tests', () => {
     it('01 - the class Customer should exist', () => {
       const customer = new FctCustomer(customerValidInfo)
-      expect(customer).toBeTruthy()
+      expect(customer).toBeDefined()
     })
 
     it('02 - should not throw error when pass a valid customer', () => {
