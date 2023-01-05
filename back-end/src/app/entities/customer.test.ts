@@ -51,6 +51,18 @@ describe('Customer', () => {
       jest.spyOn(customer.emailValidator, 'isValid').mockReturnValueOnce(false)
       expect(() => customer.execute()).toThrowError('Should be a valid email')
     })
+
+    it('03 - should fail when pass an invalid "phone"', () => {
+      const customerInfo = {
+        name: 'name_test',
+        email: 'email_test',
+        phone: 'invalid_phone_test',
+        address: 'address_test',
+        cpf: 'address_test'
+      }
+      const customer = new FctCustomer(customerInfo)
+      expect(() => customer.execute()).toThrowError('Should have only numbers')
+    })
   })
 
   describe('Successful tests', () => {
