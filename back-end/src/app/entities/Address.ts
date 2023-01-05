@@ -12,6 +12,13 @@ export class Address {
   constructor (addressProps: IAddress) {
     this.props = addressProps
     this.validateCity()
+    this.validateState()
+  }
+
+  validateState (): void {
+    if (this.state.length !== 2) {
+      throw new Error('city should have exact 2 charaters')
+    }
   }
 
   validateCity (): void {
