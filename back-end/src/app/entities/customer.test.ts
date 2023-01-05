@@ -36,7 +36,7 @@ describe('Customer', () => {
         cpf: 'address_test'
       }
       const customer = new FctCustomer(customerInfo)
-      expect(customer.execute).toThrowError()
+      expect(() => customer.execute()).toThrowError('Should have more than 2 characteres')
     })
 
     it('02 - should fail when pass invalid "email"', () => {
@@ -49,7 +49,7 @@ describe('Customer', () => {
       }
       const customer = new FctCustomer(customerInfo)
       jest.spyOn(customer.emailValidator, 'isValid').mockReturnValueOnce(false)
-      expect(customer.execute).toThrowError()
+      expect(() => customer.execute()).toThrowError('Should be a valid email')
     })
   })
 
