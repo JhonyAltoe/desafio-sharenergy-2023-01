@@ -19,6 +19,13 @@ export class Customer {
     this.validateName()
     this.validateEmail(this.email)
     this.validatePhone()
+    this.validateCpf()
+  }
+
+  validateCpf (): void {
+    if (this.cpf.length !== 11) {
+      throw new Error('cpf should have exactly 11 of length')
+    }
   }
 
   validatePhone (): void {
