@@ -17,6 +17,14 @@ export class Customer {
     this.emailValidator = emailValidator
     this.validateName()
     this.validateEmail(this.email)
+    this.validatePhone()
+  }
+
+  validatePhone (): void {
+    const pattern = /^\+?[0-9]\d{1,20}$/
+    if (!pattern.test(this.phone)) {
+      throw new Error('Should have only numbers')
+    }
   }
 
   validateEmail (email: string): void {
