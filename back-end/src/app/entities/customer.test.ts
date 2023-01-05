@@ -1,5 +1,7 @@
 import { EmailValidator } from '../protocols/emailValidator'
+import { Address } from './Address'
 import { Customer, ICurstomer } from './Customer'
+import { addressValidInfo } from './address.test'
 
 const fctEmailValidator = (): EmailValidator => {
   class EmailValidatorStub implements EmailValidator {
@@ -29,7 +31,7 @@ const customerValidInfo: ICurstomer = {
   name: 'valid_name',
   email: 'valid@email.com',
   phone: '5527900000000',
-  address: 'address_test',
+  address: new Address(addressValidInfo),
   cpf: '99999999999'
 }
 
