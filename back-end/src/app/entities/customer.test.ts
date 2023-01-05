@@ -55,6 +55,15 @@ describe('Customer', () => {
       const customer = new FctCustomer(customerInfo)
       expect(() => customer.execute()).toThrowError('Should have only numbers')
     })
+
+    it('04 - should fail when "cpf" has different than 11 length', () => {
+      const cpfLength10 = { ...customerValidInfo, cpf: '9999999999' }
+      const cpfLength12 = { ...customerValidInfo, cpf: '999999999999' }
+      const customerLength10 = new FctCustomer(cpfLength10)
+      const customerLength12 = new FctCustomer(cpfLength12)
+      expect(() => customerLength10.execute()).toThrowError('cpf should have exactly 11 of length')
+      expect(() => customerLength12.execute()).toThrowError('cpf should have exactly 11 of length')
+    })
   })
 
   describe('Successful tests', () => {
