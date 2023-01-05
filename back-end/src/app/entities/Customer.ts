@@ -11,6 +11,7 @@ export class Customer {
 
   constructor (props: ICurstomer) {
     this.props = props
+    this.validateName()
   }
 
   get name (): string {
@@ -31,5 +32,11 @@ export class Customer {
 
   get cpf (): string {
     return this.props.cpf
+  }
+
+  validateName (): void {
+    if (this.name.length < 3) {
+      throw new Error('Should have more than 2 characteres')
+    }
   }
 }
