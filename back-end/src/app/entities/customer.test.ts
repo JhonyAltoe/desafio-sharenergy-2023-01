@@ -77,5 +77,17 @@ describe('Customer', () => {
       const customer = new FctCustomer(customerInfo)
       expect(customer).toBeTruthy()
     })
+
+    it('02 - should not throw error when pass a valid customer', () => {
+      const customerInfo = {
+        name: 'valid_name',
+        email: 'valid_email',
+        phone: '5527900000000',
+        address: 'valid_address',
+        cpf: 'valid_cpf'
+      }
+      const customer = new FctCustomer(customerInfo)
+      expect(() => customer.execute()).not.toThrowError()
+    })
   })
 })
