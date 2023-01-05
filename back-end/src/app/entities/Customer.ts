@@ -1,10 +1,11 @@
 import { EmailValidator } from '../protocols/emailValidator'
+import { IAddress } from './Address'
 
 export interface ICurstomer {
   name: string
   email: string
   phone: string
-  address: string
+  address: IAddress
   cpf: string
 }
 
@@ -51,7 +52,7 @@ export class Customer {
     return this.props.phone
   }
 
-  get address (): string {
+  get address (): IAddress {
     return this.props.address
   }
 
