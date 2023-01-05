@@ -7,9 +7,29 @@ export interface IAddress {
 }
 
 export class Address {
-  private readonly addressProps: IAddress
+  private readonly props: IAddress
 
   constructor (addressProps: IAddress) {
-    this.addressProps = addressProps
+    this.props = addressProps
+  }
+
+  get city (): string {
+    return this.props.city
+  }
+
+  get state (): string {
+    return this.props.state
+  }
+
+  get street (): string {
+    return this.props.street
+  }
+
+  get number (): string {
+    return this.props.number
+  }
+
+  get comment (): string {
+    return this.props.comment
   }
 }
