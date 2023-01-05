@@ -11,6 +11,13 @@ export class Address {
 
   constructor (addressProps: IAddress) {
     this.props = addressProps
+    this.validateCity()
+  }
+
+  validateCity (): void {
+    if (this.city.length < 3) {
+      throw new Error('city should have more than 2 characters')
+    }
   }
 
   get city (): string {
