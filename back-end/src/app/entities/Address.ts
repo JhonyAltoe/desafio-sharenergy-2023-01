@@ -13,6 +13,13 @@ export class Address {
     this.props = addressProps
     this.validateCity()
     this.validateState()
+    this.validateStreet()
+  }
+
+  validateStreet (): void {
+    if (this.street.length === 0) {
+      throw new Error('street shouldn\'t be empty')
+    }
   }
 
   validateState (): void {
