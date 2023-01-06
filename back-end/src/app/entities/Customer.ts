@@ -1,5 +1,6 @@
 import { EmailValidator } from '../protocols/emailValidator'
 import { IAddress } from './Address'
+import { randomUUID } from 'crypto'
 
 export interface ICustomer {
   name: string
@@ -10,10 +11,12 @@ export interface ICustomer {
 }
 
 export class Customer {
+  private readonly _id: string
   private readonly props: ICustomer
   private readonly emailValidator: EmailValidator
 
-  constructor (props: ICustomer, emailValidator: EmailValidator) {
+  constructor (props: ICustomer, emailValidator: EmailValidator, id?: string) {
+    this._id = id ?? randomUUID()
     this.props = props
     this.emailValidator = emailValidator
     this.validateName()
@@ -45,6 +48,10 @@ export class Customer {
     if (this.name.length < 3) {
       throw new Error('Should have more than 2 characteres')
     }
+  }
+
+  get id (): string {
+    return this._id
   }
 
   get name (): string {
