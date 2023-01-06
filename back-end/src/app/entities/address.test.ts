@@ -48,5 +48,11 @@ describe('Address', () => {
     it('01 - the class Address should exist', () => {
       expect(Address).toBeDefined()
     })
+
+    it('02 - should pass when receive valid address', () => {
+      const addressProps = { ...addressValidInfo }
+      const address = new FctAddress(addressProps)
+      expect(address).toBeTruthy()
+    })
   })
 })
