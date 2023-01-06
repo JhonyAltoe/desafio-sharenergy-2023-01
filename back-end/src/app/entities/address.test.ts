@@ -36,6 +36,12 @@ describe('Address', () => {
       expect(() => addressWithStateLenth1.execute()).toThrowError('city should have exact 2 charaters')
       expect(() => addressWithStateLenth3.execute()).toThrowError('city should have exact 2 charaters')
     })
+
+    it('03 - should fail when street is empty', () => {
+      const streetEmpty = { ...addressValidInfo, street: '' }
+      const address = new FctAddress(streetEmpty)
+      expect(() => address.execute()).toThrowError('street shouldn\'t be empty')
+    })
   })
 
   describe('Successful tests', () => {
