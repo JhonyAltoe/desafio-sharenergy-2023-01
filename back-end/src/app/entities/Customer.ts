@@ -1,7 +1,7 @@
 import { EmailValidator } from '../protocols/emailValidator'
 import { IAddress } from './Address'
 
-export interface ICurstomer {
+export interface ICustomer {
   name: string
   email: string
   phone: string
@@ -10,10 +10,10 @@ export interface ICurstomer {
 }
 
 export class Customer {
-  private readonly props: ICurstomer
+  private readonly props: ICustomer
   private readonly emailValidator: EmailValidator
 
-  constructor (props: ICurstomer, emailValidator: EmailValidator) {
+  constructor (props: ICustomer, emailValidator: EmailValidator) {
     this.props = props
     this.emailValidator = emailValidator
     this.validateName()

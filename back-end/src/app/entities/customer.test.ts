@@ -1,6 +1,6 @@
 import { EmailValidator } from '../protocols/emailValidator'
 import { Address } from './Address'
-import { Customer, ICurstomer } from './Customer'
+import { Customer, ICustomer } from './Customer'
 import { addressValidInfo } from './address.test'
 
 const fctEmailValidator = (): EmailValidator => {
@@ -15,9 +15,9 @@ const fctEmailValidator = (): EmailValidator => {
 
 class FctCustomer {
   emailValidator: EmailValidator
-  customerProp: ICurstomer
+  customerProp: ICustomer
 
-  constructor (customerProp: ICurstomer) {
+  constructor (customerProp: ICustomer) {
     this.emailValidator = fctEmailValidator()
     this.customerProp = customerProp
   }
@@ -27,7 +27,7 @@ class FctCustomer {
   }
 }
 
-const customerValidInfo: ICurstomer = {
+const customerValidInfo: ICustomer = {
   name: 'valid_name',
   email: 'valid@email.com',
   phone: '5527900000000',
