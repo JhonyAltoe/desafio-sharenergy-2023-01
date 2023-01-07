@@ -1,4 +1,5 @@
 import { EmailValidator } from '../protocols/emailValidator'
+import { ICustomerResponse } from '../repositories/CustomerRepository'
 import { IAddress } from './Address'
 import { randomUUID } from 'crypto'
 
@@ -72,5 +73,9 @@ export class Customer {
 
   get cpf (): string {
     return this.props.cpf
+  }
+
+  get value (): ICustomerResponse {
+    return { ...this.props, id: this._id }
   }
 }
