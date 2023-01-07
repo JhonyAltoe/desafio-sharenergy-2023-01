@@ -16,19 +16,19 @@ export class Address {
     this.validateStreet()
   }
 
-  validateStreet (): void {
+  private validateStreet (): void {
     if (this.street.length === 0) {
       throw new Error('street shouldn\'t be empty')
     }
   }
 
-  validateState (): void {
+  private validateState (): void {
     if (this.state.length !== 2) {
       throw new Error('city should have exact 2 charaters')
     }
   }
 
-  validateCity (): void {
+  private validateCity (): void {
     if (this.city.length < 3) {
       throw new Error('city should have more than 2 characters')
     }
