@@ -1,6 +1,5 @@
 import { EmailValidator } from '../protocols/emailValidator'
 import { ICustomerResponse } from '../repositories/CustomerRepository'
-import { Address } from './Address'
 import { Customer, CustomerProps } from './Customer'
 import { addressValidInfo } from './address.test'
 import crypto from 'crypto'
@@ -33,7 +32,7 @@ const customerValidInfo: CustomerProps = {
   name: 'valid_name',
   email: 'valid@email.com',
   phone: '5527900000000',
-  address: new Address(addressValidInfo),
+  address: addressValidInfo,
   cpf: '99999999999'
 }
 
