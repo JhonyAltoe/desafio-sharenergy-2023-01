@@ -60,7 +60,7 @@ describe('Customer', () => {
     it('03 - should fail when pass an invalid "phone"', () => {
       const customerInfo = { ...customerValidInfo, phone: 'invalid_phone' }
       const customer = new FctCustomer(customerInfo)
-      expect(() => customer.execute()).toThrowError('Should have only numbers')
+      expect(() => customer.execute()).toThrowError('phone should have only numbers')
     })
 
     it('04 - should fail when "cpf" has different than 11 length', () => {
