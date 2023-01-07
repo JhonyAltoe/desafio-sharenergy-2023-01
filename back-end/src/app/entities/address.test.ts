@@ -54,5 +54,12 @@ describe('Address', () => {
       const address = new FctAddress(addressProps)
       expect(address).toBeTruthy()
     })
+
+    it('03 - should return full address', () => {
+      const addressProps = { ...addressValidInfo }
+      const fctAddress = new FctAddress(addressProps)
+      const address = fctAddress.execute()
+      expect(address.value).toEqual(addressValidInfo)
+    })
   })
 })
