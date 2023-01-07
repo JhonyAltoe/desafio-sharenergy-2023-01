@@ -14,7 +14,7 @@ const fctEmailValidator = (): EmailValidator => {
   return emailValidatorStub
 }
 
-class FctCustomer {
+export class FctCustomer {
   emailValidator: EmailValidator
   customerProp: CustomerProps
 
