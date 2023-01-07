@@ -1,4 +1,4 @@
-import { Address, IAddress } from './Address'
+import { Address, IAddress } from './address'
 
 class FctAddress {
   addressProp: IAddress

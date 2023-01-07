@@ -1,6 +1,6 @@
 import { EmailValidator } from '../protocols/emailValidator'
-import { ICustomerResponse } from '../repositories/CustomerRepository'
-import { Address, IAddress } from './Address'
+import { ICustomerResponse } from '../repositories/customer-repository'
+import { Address, IAddress } from './address'
 import { randomUUID } from 'crypto'
 
 export interface CustomerProps {
