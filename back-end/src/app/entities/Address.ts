@@ -53,4 +53,8 @@ export class Address {
   get comment (): string {
     return this.props.comment
   }
+
+  get value (): IAddress {
+    return { ...this.props }
+  }
 }
