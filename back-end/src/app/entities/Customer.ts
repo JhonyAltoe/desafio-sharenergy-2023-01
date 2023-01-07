@@ -26,26 +26,26 @@ export class Customer {
     this.validateCpf()
   }
 
-  validateCpf (): void {
+  private validateCpf (): void {
     if (this.cpf.length !== 11) {
       throw new Error('cpf should have exactly 11 of length')
     }
   }
 
-  validatePhone (): void {
+  private validatePhone (): void {
     const pattern = /^\+?[0-9]\d{1,20}$/
     if (!pattern.test(this.phone)) {
       throw new Error('Should have only numbers')
     }
   }
 
-  validateEmail (email: string): void {
+  private validateEmail (email: string): void {
     if (!this.emailValidator.isValid(email)) {
       throw new Error('Should be a valid email')
     }
   }
 
-  validateName (): void {
+  private validateName (): void {
     if (this.name.length < 3) {
       throw new Error('Should have more than 2 characteres')
     }
