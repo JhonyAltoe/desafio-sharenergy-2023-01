@@ -11,7 +11,6 @@ export interface ICustomerResponse extends CustomerProps {
 export interface CustomerRepository {
   create: (customer: ICustomerPersistence) => Promise<ICustomerResponse>
   remove: (id: string) => Promise<void>
-  getById: (id: string) => Promise<ICustomerResponse>
+  getByEmail: (email: string) => Promise<ICustomerResponse>
   update: (id: string, customer: Partial<ICustomerPersistence>) => Promise<ICustomerResponse>
-  getAll: () => Promise<ICustomerResponse[]>
 }
