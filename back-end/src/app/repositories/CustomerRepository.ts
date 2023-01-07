@@ -1,13 +1,13 @@
-import { ICustomer } from '../entities/Customer'
+import { CustomerProps } from '../entities/Customer'
 
-export interface ICustomerResponse extends ICustomer {
+export interface ICustomerResponse extends CustomerProps {
   id: string
 }
 
 export interface CustomerRepository {
-  create: (customer: ICustomer) => Promise<ICustomerResponse>
+  create: (customer: CustomerProps) => Promise<ICustomerResponse>
   remove: (id: string) => void
   getById: (id: string) => Promise<ICustomerResponse>
-  update: (id: string, customer: Partial<ICustomer>) => Promise<ICustomerResponse>
+  update: (id: string, customer: Partial<CustomerProps>) => Promise<ICustomerResponse>
   getAll: () => Promise<ICustomerResponse[]>
 }
