@@ -1,6 +1,6 @@
 import { EmailValidator } from '../protocols/emailValidator'
 import { ICustomerResponse } from '../repositories/CustomerRepository'
-import { IAddress } from './Address'
+import { Address, IAddress } from './Address'
 import { randomUUID } from 'crypto'
 
 export interface CustomerProps {
@@ -13,12 +13,14 @@ export interface CustomerProps {
 
 export class Customer {
   private readonly _id: string
+  private readonly _address: IAddress
   private readonly props: CustomerProps
   private readonly emailValidator: EmailValidator
 
   constructor (props: CustomerProps, emailValidator: EmailValidator, id?: string) {
     this._id = id ?? randomUUID()
-    this.props = props
+    this._address = new Address(props.address).value
+    this.props = { ...props, address: this._address }
     this.emailValidator = emailValidator
     this.validateName()
     this.validateEmail(this.email)
