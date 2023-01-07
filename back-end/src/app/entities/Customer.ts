@@ -47,7 +47,7 @@ export class Customer {
 
   private validateName (): void {
     if (this.name.length < 3) {
-      throw new Error('Should have more than 2 characteres')
+      throw new Error('name should have more than 2 characteres')
     }
   }
 

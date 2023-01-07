@@ -47,7 +47,7 @@ describe('Customer', () => {
     it('01 - should fail when "name" has less than 3 characters', () => {
       const customerInfo = { ...customerValidInfo, name: 'ab' }
       const customer = new FctCustomer(customerInfo)
-      expect(() => customer.execute()).toThrowError('Should have more than 2 characteres')
+      expect(() => customer.execute()).toThrowError('name should have more than 2 characteres')
     })
 
     it('02 - should fail when pass invalid "email"', () => {
