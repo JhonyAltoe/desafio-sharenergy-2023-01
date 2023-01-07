@@ -3,7 +3,7 @@ import { ICustomerResponse } from '../repositories/CustomerRepository'
 import { IAddress } from './Address'
 import { randomUUID } from 'crypto'
 
-export interface ICustomer {
+export interface CustomerProps {
   name: string
   email: string
   phone: string
@@ -13,10 +13,10 @@ export interface ICustomer {
 
 export class Customer {
   private readonly _id: string
-  private readonly props: ICustomer
+  private readonly props: CustomerProps
   private readonly emailValidator: EmailValidator
 
-  constructor (props: ICustomer, emailValidator: EmailValidator, id?: string) {
+  constructor (props: CustomerProps, emailValidator: EmailValidator, id?: string) {
     this._id = id ?? randomUUID()
     this.props = props
     this.emailValidator = emailValidator
