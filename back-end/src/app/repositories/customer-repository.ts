@@ -1,4 +1,4 @@
-import { CustomerProps } from '../entities/Customer'
+import { CustomerProps } from '../entities/customer'
 
 export interface ICustomerResponse extends CustomerProps {
   id: string

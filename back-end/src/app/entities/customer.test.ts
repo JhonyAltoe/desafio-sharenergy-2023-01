@@ -1,6 +1,6 @@
 import { EmailValidator } from '../protocols/emailValidator'
 import { ICustomerResponse } from '../repositories/customer-repository'
-import { Customer, CustomerProps } from './Customer'
+import { Customer, CustomerProps } from './customer'
 import { addressValidInfo } from './address.test'
 import crypto from 'crypto'
 
