@@ -33,8 +33,8 @@ describe('Address', () => {
       const stateLength3 = { ...addressValidInfo, state: 'abc' }
       const addressWithStateLenth1 = new FctAddress(stateLength1)
       const addressWithStateLenth3 = new FctAddress(stateLength3)
-      expect(() => addressWithStateLenth1.execute()).toThrowError('city should have exact 2 charaters')
-      expect(() => addressWithStateLenth3.execute()).toThrowError('city should have exact 2 charaters')
+      expect(() => addressWithStateLenth1.execute()).toThrowError('state should have exact 2 charaters')
+      expect(() => addressWithStateLenth3.execute()).toThrowError('state should have exact 2 charaters')
     })
 
     it('03 - should fail when street is empty', () => {

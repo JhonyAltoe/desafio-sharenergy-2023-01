@@ -24,7 +24,7 @@ export class Address {
 
   private validateState (): void {
     if (this.state.length !== 2) {
-      throw new Error('city should have exact 2 charaters')
+      throw new Error('state should have exact 2 charaters')
     }
   }
 
