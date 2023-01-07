@@ -1,7 +1,9 @@
 import { EmailValidator } from '../protocols/emailValidator'
+import { ICustomerResponse } from '../repositories/CustomerRepository'
 import { Address } from './Address'
 import { Customer, ICustomer } from './Customer'
 import { addressValidInfo } from './address.test'
+import crypto from 'crypto'
 
 const fctEmailValidator = (): EmailValidator => {
   class EmailValidatorStub implements EmailValidator {
@@ -33,6 +35,11 @@ const customerValidInfo: ICustomer = {
   phone: '5527900000000',
   address: new Address(addressValidInfo),
   cpf: '99999999999'
+}
+
+const customerResponse: ICustomerResponse = {
+  ...customerValidInfo,
+  id: 'valid-random-uuid'
 }
 
 describe('Customer', () => {
@@ -75,6 +82,13 @@ describe('Customer', () => {
     it('02 - should not throw error when pass a valid customer', () => {
       const customer = new FctCustomer(customerValidInfo)
       expect(() => customer.execute()).not.toThrowError()
+    })
+
+    it('03 - should return a customer object', () => {
+      const fctCustomer = new FctCustomer(customerValidInfo)
+      jest.spyOn(crypto, 'randomUUID').mockReturnValueOnce('valid-random-uuid')
+      const customer = fctCustomer.execute()
+      expect(customer.value).toEqual(customerResponse)
     })
   })
 })
