@@ -1,6 +1,6 @@
 import { ICustomerResponse } from '../../../../repositories/customer-repository'
 
-export const customersMock: ICustomerResponse[] = [
+export const customersMock = (): ICustomerResponse[] => [
   {
     id: 'uuid-1',
     name: 'joao',
