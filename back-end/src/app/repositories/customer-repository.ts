@@ -12,5 +12,5 @@ export interface CustomerRepository {
   create: (customer: ICustomerPersistence) => Promise<ICustomerResponse>
   remove: (id: string) => Promise<void>
   getByEmail: (email: string) => Promise<ICustomerResponse | null>
-  update: (id: string, customer: Partial<ICustomerPersistence>) => Promise<ICustomerResponse>
+  update: (id: string, customer: Partial<ICustomerPersistence>) => Promise<ICustomerResponse | null>
 }
