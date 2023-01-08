@@ -32,5 +32,14 @@ export class InMemoryCustomerRepository implements CustomerRepository {
     return null
   }
 
-  update: (id: string, customer: Partial<ICustomerPersistence>) => Promise<ICustomerResponse>
+  async update (id: string, customer: Partial<ICustomerPersistence>): Promise<ICustomerResponse | null> {
+    for (let i = 0; i < this.customers.length; i++) {
+      if (this.customers[i].id === id) {
+        const newCustomer = { ...this.customers[i], ...customer }
+        this.customers[i] = newCustomer
+        return this.customers[i]
+      }
+    }
+    return null
+  }
 }
