@@ -13,4 +13,5 @@ export interface CustomerRepository {
   remove: (id: string) => Promise<void>
   getByEmail: (email: string) => Promise<ICustomerResponse | null>
   update: (id: string, customer: Partial<ICustomerRequest>) => Promise<ICustomerResponse | null>
+  exists: (email: string) => Promise<Boolean>
 }
