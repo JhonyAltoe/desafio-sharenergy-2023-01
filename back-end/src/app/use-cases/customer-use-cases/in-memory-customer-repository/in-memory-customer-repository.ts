@@ -12,17 +12,16 @@ export class InMemoryCustomerRepository implements CustomerRepository {
     return customer as ICustomerResponse
   }
 
-  // async remove (id: string): Promise<void> {
-  //   let c: ICustomerResponse
-  //   for (c of this.customers) {
-  //     if (c.id === id) {
-  //       const customerIndex = this.customers.indexOf(c)
-  //       this.customers.splice(customerIndex, 1)
-  //     }
-  //   }
-  // }
+  async remove (id: string): Promise<void> {
+    let c: ICustomerResponse
+    for (c of this.customers) {
+      if (c.id === id) {
+        const customerIndex = this.customers.indexOf(c)
+        this.customers.splice(customerIndex, 1)
+      }
+    }
+  }
 
-  remove: (id: string) => Promise<void>
   getByEmail: (email: string) => Promise<ICustomerResponse>
   update: (id: string, customer: Partial<ICustomerPersistence>) => Promise<ICustomerResponse>
 }
