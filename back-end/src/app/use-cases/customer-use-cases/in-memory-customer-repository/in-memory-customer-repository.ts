@@ -22,6 +22,15 @@ export class InMemoryCustomerRepository implements CustomerRepository {
     }
   }
 
-  getByEmail: (email: string) => Promise<ICustomerResponse>
+  async getByEmail (email: string): Promise<ICustomerResponse | null> {
+    let c: ICustomerResponse
+    for (c of this.customers) {
+      if (c.email === email) {
+        return c
+      }
+    }
+    return null
+  }
+
   update: (id: string, customer: Partial<ICustomerPersistence>) => Promise<ICustomerResponse>
 }
