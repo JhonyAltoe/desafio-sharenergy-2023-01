@@ -11,26 +11,37 @@ export class Address {
 
   constructor (addressProps: IAddress) {
     this.props = addressProps
-    this.validateCity()
-    this.validateState()
-    this.validateStreet()
   }
 
-  private validateStreet (): void {
+  validate (): Error | undefined {
+    const validations = [
+      this.validateCity(),
+      this.validateState(),
+      this.validateStreet()
+    ]
+    let e: Error | undefined
+    for (e of validations) {
+      if (e instanceof Error) {
+        return e
+      }
+    }
+  }
+
+  private validateStreet (): Error | undefined {
     if (this.street.length === 0) {
-      throw new Error('street shouldn\'t be empty')
+      return new Error('street shouldn\'t be empty')
     }
   }
 
-  private validateState (): void {
+  private validateState (): Error | undefined {
     if (this.state.length !== 2) {
-      throw new Error('state should have exact 2 charaters')
+      return new Error('state should have exact 2 charaters')
     }
   }
 
-  private validateCity (): void {
+  private validateCity (): Error | undefined {
     if (this.city.length < 3) {
-      throw new Error('city should have more than 2 characters')
+      return new Error('city should have more than 2 characters')
     }
   }
 
