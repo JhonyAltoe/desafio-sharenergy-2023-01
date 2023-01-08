@@ -3,7 +3,7 @@ import { InMemoryCustomerRepository } from './in-memory-customer-repository'
 import { ICustomerPersistence } from '../../../repositories/customer-repository'
 
 describe('in-memory-customer-repository', () => {
-  it('should return create new customer and return it', async () => {
+  it('01 - should return create new customer and return it', async () => {
     const newCustomer: ICustomerPersistence = {
       id: 'uuid-3',
       name: 'daniel',
@@ -18,9 +18,17 @@ describe('in-memory-customer-repository', () => {
       },
       phone: '27999997777'
     }
-    const customerRepo = new InMemoryCustomerRepository(customersMock)
+    const customerRepo = new InMemoryCustomerRepository(customersMock())
     const customer = await customerRepo.create(newCustomer)
     expect(customer).toEqual(newCustomer)
     expect(customerRepo.customers[2]).toEqual(newCustomer)
+  })
+
+  it('02 - should remove a customer', async () => {
+    const customerRepo = new InMemoryCustomerRepository(customersMock())
+    await customerRepo.remove('uuid-1')
+    const shouldBeUndefined = customerRepo.customers.find((c) => c.id === 'uuid-1')
+    expect(customerRepo.customers.length).toBe(1)
+    expect(shouldBeUndefined).toEqual(undefined)
   })
 })
