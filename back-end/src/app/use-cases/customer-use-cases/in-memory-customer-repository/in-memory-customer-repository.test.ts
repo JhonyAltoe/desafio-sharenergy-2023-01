@@ -37,4 +37,11 @@ describe('in-memory-customer-repository', () => {
     const customer = await customerRepo.getByEmail('maria@email.com')
     expect(customer?.name).toBe('maria')
   })
+
+  it('04 - should update if find corresponding id', async () => {
+    const customerRepo = new InMemoryCustomerRepository(customersMock())
+    const updatedCustomer = await customerRepo.update('uuid-1', { email: 'joaodasilva@email.com' })
+    expect(updatedCustomer?.email).toBe('joaodasilva@email.com')
+    expect(customerRepo.customers[0].email).toBe('joaodasilva@email.com')
+  })
 })
