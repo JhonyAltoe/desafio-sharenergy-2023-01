@@ -1,7 +1,7 @@
 import { CustomerRepository, ICustomerResponse, ICustomerPersistence } from '../../../repositories/customer-repository'
 
 export class InMemoryCustomerRepository implements CustomerRepository {
-  private readonly customers: ICustomerResponse[]
+  customers: ICustomerResponse[] = []
 
   constructor (customers: ICustomerResponse[]) {
     this.customers = customers
