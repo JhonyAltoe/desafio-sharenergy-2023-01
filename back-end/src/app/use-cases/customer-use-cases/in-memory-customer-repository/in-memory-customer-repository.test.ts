@@ -3,7 +3,7 @@ import { InMemoryCustomerRepository } from './in-memory-customer-repository'
 import { ICustomerPersistence } from '../../../repositories/customer-repository'
 
 describe('in-memory-customer-repository', () => {
-  it('should return customer if customer is found', async () => {
+  it('should return create new customer and return it', async () => {
     const newCustomer: ICustomerPersistence = {
       id: 'uuid-3',
       name: 'daniel',
@@ -21,5 +21,6 @@ describe('in-memory-customer-repository', () => {
     const customerRepo = new InMemoryCustomerRepository(customersMock)
     const customer = await customerRepo.create(newCustomer)
     expect(customer).toEqual(newCustomer)
+    expect(customerRepo.customers[2]).toEqual(newCustomer)
   })
 })
