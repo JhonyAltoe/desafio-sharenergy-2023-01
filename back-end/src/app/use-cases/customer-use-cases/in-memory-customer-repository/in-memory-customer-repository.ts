@@ -1,4 +1,4 @@
-import { CustomerRepository, ICustomerResponse, ICustomerPersistence } from '../../../repositories/customer-repository'
+import { CustomerRepository, ICustomerResponse, ICustomerRequest } from '../../../repositories/customer-repository'
 
 export class InMemoryCustomerRepository implements CustomerRepository {
   customers: ICustomerResponse[] = []
@@ -7,7 +7,7 @@ export class InMemoryCustomerRepository implements CustomerRepository {
     this.customers = customers
   }
 
-  async create (customer: ICustomerPersistence): Promise<ICustomerResponse> {
+  async create (customer: ICustomerRequest): Promise<ICustomerResponse> {
     this.customers.push(customer as ICustomerResponse)
     return customer as ICustomerResponse
   }
@@ -32,7 +32,7 @@ export class InMemoryCustomerRepository implements CustomerRepository {
     return null
   }
 
-  async update (id: string, customer: Partial<ICustomerPersistence>): Promise<ICustomerResponse | null> {
+  async update (id: string, customer: Partial<ICustomerRequest>): Promise<ICustomerResponse | null> {
     for (let i = 0; i < this.customers.length; i++) {
       if (this.customers[i].id === id) {
         const newCustomer = { ...this.customers[i], ...customer }

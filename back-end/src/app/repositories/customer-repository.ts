@@ -1,6 +1,6 @@
 import { CustomerProps } from '../entities/customer'
 
-export interface ICustomerPersistence extends CustomerProps {
+export interface ICustomerRequest extends CustomerProps {
   id?: string
 }
 
@@ -9,8 +9,8 @@ export interface ICustomerResponse extends CustomerProps {
 }
 
 export interface CustomerRepository {
-  create: (customer: ICustomerPersistence) => Promise<ICustomerResponse>
+  create: (customer: ICustomerRequest) => Promise<ICustomerResponse>
   remove: (id: string) => Promise<void>
   getByEmail: (email: string) => Promise<ICustomerResponse | null>
-  update: (id: string, customer: Partial<ICustomerPersistence>) => Promise<ICustomerResponse | null>
+  update: (id: string, customer: Partial<ICustomerRequest>) => Promise<ICustomerResponse | null>
 }
