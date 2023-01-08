@@ -44,4 +44,12 @@ describe('in-memory-customer-repository', () => {
     expect(updatedCustomer?.email).toBe('joaodasilva@email.com')
     expect(customerRepo.customers[0].email).toBe('joaodasilva@email.com')
   })
+
+  it('05 - should return true if customer exists', async () => {
+    const customerRepo = new InMemoryCustomerRepository(customersMock())
+    const exists = await customerRepo.exists('joao@email.com')
+    const notExists = await customerRepo.exists('notexist@email.com')
+    expect(exists).toEqual(true)
+    expect(notExists).toEqual(false)
+  })
 })
