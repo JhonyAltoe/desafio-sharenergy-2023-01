@@ -42,4 +42,8 @@ export class InMemoryCustomerRepository implements CustomerRepository {
     }
     return null
   }
+
+  async exists (email: string): Promise<Boolean> {
+    return this.customers.some((c) => c.email === email)
+  }
 }
