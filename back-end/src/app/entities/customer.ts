@@ -1,55 +1,77 @@
 import { EmailValidator } from '../protocols/emailValidator'
 import { ICustomerRequest } from '../repositories/customer-repository'
-import { Address, IAddress } from './address'
+import { Address, AddressProps, IAddress } from './address'
 import { randomUUID } from 'crypto'
 
 export interface CustomerProps {
   name: string
   email: string
   phone: string
-  address: IAddress
+  address: AddressProps
   cpf: string
 }
 
-export class Customer {
+export interface ICustomer {
+  name: string
+  email: string
+  phone: string
+  address: AddressProps
+  cpf: string
+  value: ICustomerRequest
+  validate: () => Error | undefined
+}
+
+export class Customer implements ICustomer {
   private readonly _id: string
-  private readonly _address: IAddress
+  private readonly addressInstance: IAddress
   private readonly props: CustomerProps
   private readonly emailValidator: EmailValidator
 
   constructor (props: CustomerProps, emailValidator: EmailValidator, id?: string) {
     this._id = id ?? randomUUID()
-    this._address = new Address(props.address).value
-    this.props = { ...props, address: this._address }
+    this.addressInstance = new Address(props.address)
+    this.props = { ...props, address: this.addressInstance.value }
     this.emailValidator = emailValidator
-    this.validateName()
-    this.validateEmail(this.email)
-    this.validatePhone()
-    this.validateCpf()
   }
 
-  private validateCpf (): void {
-    if (this.cpf.length !== 11) {
-      throw new Error('cpf should have exactly 11 of length')
+  validate (): Error | undefined {
+    const validations = [
+      this.validateName(),
+      this.validateEmail(this.email),
+      this.validatePhone(),
+      this.validateCpf(),
+      this.addressInstance.validate()
+    ]
+    let e: Error | undefined
+    for (e of validations) {
+      if (e instanceof Error) {
+        return e
+      }
     }
   }
 
-  private validatePhone (): void {
+  private validateCpf (): Error | undefined {
+    if (this.cpf.length !== 11) {
+      return new Error('cpf should have exactly 11 of length')
+    }
+  }
+
+  private validatePhone (): Error | undefined {
     const pattern = /^\+?[0-9]\d{1,20}$/
     if (!pattern.test(this.phone)) {
-      throw new Error('phone should have only numbers')
+      return new Error('phone should have only numbers')
     }
   }
 
-  private validateEmail (email: string): void {
+  private validateEmail (email: string): Error | undefined {
     if (!this.emailValidator.isValid(email)) {
-      throw new Error('Should be a valid email')
+      return new Error('should be a valid email')
     }
   }
 
-  private validateName (): void {
+  private validateName (): Error | undefined {
     if (this.name.length < 3) {
-      throw new Error('name should have more than 2 characteres')
+      return new Error('name should have more than 2 characteres')
     }
   }
 
@@ -69,7 +91,7 @@ export class Customer {
     return this.props.phone
   }
 
-  get address (): IAddress {
+  get address (): AddressProps {
     return this.props.address
   }
 
