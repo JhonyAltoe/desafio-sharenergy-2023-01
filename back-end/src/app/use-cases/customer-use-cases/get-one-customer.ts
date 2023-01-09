@@ -1,18 +1,21 @@
-import { EmailValidator } from '../../protocols/emailValidator'
 import { CustomerRepository, CustomerResponse } from '../../repositories/customer-repository'
 
 export interface IGetOneCustomer {
-  getOne: (email: string) => Promise<CustomerResponse>
+  getOne: (email: string) => Promise<CustomerResponse | Error >
 }
 
 export class GetOneCustomer implements IGetOneCustomer {
   private readonly customerRepository: CustomerRepository
-  private readonly emailValidator: EmailValidator
 
-  constructor (customerRepository: CustomerRepository, emailValidator: EmailValidator) {
+  constructor (customerRepository: CustomerRepository) {
     this.customerRepository = customerRepository
-    this.emailValidator = emailValidator
   }
 
-  getOne: (email: string) => Promise<CustomerResponse>
+  async getOne (email: string): Promise<CustomerResponse | Error > {
+    const customer = await this.customerRepository.getByEmail(email)
+    if (customer === null) {
+      return new Error('customer do not exist in database')
+    }
+    return customer
+  }
 }
