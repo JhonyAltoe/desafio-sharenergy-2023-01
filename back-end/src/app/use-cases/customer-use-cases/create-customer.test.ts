@@ -1,24 +1,8 @@
 import { CustomerProps } from '../../entities/customer'
-import { fctEmailValidator } from '../../entities/customer.test'
-import { EmailValidator } from '../../protocols/emailValidator'
 import { ICustomerResponse } from '../../repositories/customer-repository'
-import { CreateCustomer, ICreateCustomer } from './create-customer'
-import { InMemoryCustomerRepository } from '../in-memory-customer-repository/in-memory-customer-repository'
-import { customersMock } from '../in-memory-customer-repository/mock/customers-mock'
-
-class FctCreateCustomer {
-  customerRepository: InMemoryCustomerRepository
-  emailValidator: EmailValidator
-
-  constructor (dbCustomersMock: ICustomerResponse[]) {
-    this.customerRepository = new InMemoryCustomerRepository(dbCustomersMock)
-    this.emailValidator = fctEmailValidator()
-  }
-
-  execute (): ICreateCustomer {
-    return new CreateCustomer(this.customerRepository, this.emailValidator)
-  }
-}
+import { CreateCustomer } from './create-customer'
+import { customersMock } from './in-memory-customer-repository/mock/customers-mock'
+import { FactoryCreateCustomer } from '../factories/factory-create-customer'
 
 describe('use-cases/CreateCustomer', () => {
   describe('Successful tests', () => {
@@ -40,7 +24,7 @@ describe('use-cases/CreateCustomer', () => {
         },
         phone: '27999997777'
       }
-      const fctCreateCustomer = new FctCreateCustomer(customersMock())
+      const fctCreateCustomer = new FactoryCreateCustomer(customersMock())
       const createCustomer = fctCreateCustomer.execute()
       const createdCustomer = await createCustomer.create(newCustomer) as ICustomerResponse
       expect(createdCustomer).toEqual({ ...newCustomer, id: 'testUUID' })
@@ -62,7 +46,7 @@ describe('use-cases/CreateCustomer', () => {
         },
         phone: '27999997777'
       }
-      const fctCreateCustomer = new FctCreateCustomer(customersMock())
+      const fctCreateCustomer = new FactoryCreateCustomer(customersMock())
       const createCustomer = fctCreateCustomer.execute()
       const createdCustomer = await createCustomer.create(newCustomer) as Error
       expect(createdCustomer.message).toBe('customer already exists')
@@ -82,7 +66,7 @@ describe('use-cases/CreateCustomer', () => {
         },
         phone: '27999997777'
       }
-      const fctCreateCustomer = new FctCreateCustomer(customersMock())
+      const fctCreateCustomer = new FactoryCreateCustomer(customersMock())
       const createCustomer = fctCreateCustomer.execute()
       const errorCustomer = await createCustomer.create(newCustomer) as Error
       expect(errorCustomer).toBeInstanceOf(Error)
