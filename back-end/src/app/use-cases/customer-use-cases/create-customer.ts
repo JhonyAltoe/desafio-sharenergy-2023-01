@@ -16,7 +16,7 @@ export class CreateCustomer implements ICreateCustomer {
   }
 
   async create (customerProps: CustomerProps): Promise<CustomerResponse | Error> {
-    const newCustomer = new Customer(customerProps, this.emailValidator, 'testUUID')
+    const newCustomer = new Customer(customerProps, this.emailValidator)
     const error = newCustomer.validate()
     if (error instanceof Error) {
       return error
