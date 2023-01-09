@@ -1,5 +1,5 @@
 import { EmailValidator } from '../protocols/emailValidator'
-import { ICustomerRequest } from '../repositories/customer-repository'
+import { CustomerRequest } from '../repositories/customer-repository'
 import { Address, AddressProps, IAddress } from './address'
 import { randomUUID } from 'crypto'
 
@@ -17,7 +17,7 @@ export interface ICustomer {
   phone: string
   address: AddressProps
   cpf: string
-  value: ICustomerRequest
+  value: CustomerRequest
   validate: () => Error | undefined
 }
 
@@ -99,7 +99,7 @@ export class Customer implements ICustomer {
     return this.props.cpf
   }
 
-  get value (): ICustomerRequest {
+  get value (): CustomerRequest {
     return { ...this.props, id: this._id }
   }
 }

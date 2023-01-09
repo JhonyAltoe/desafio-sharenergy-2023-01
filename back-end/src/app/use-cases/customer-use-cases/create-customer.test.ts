@@ -1,5 +1,5 @@
 import { CustomerProps } from '../../entities/customer'
-import { ICustomerResponse } from '../../repositories/customer-repository'
+import { CustomerResponse } from '../../repositories/customer-repository'
 import { CreateCustomer } from './create-customer'
 import { customersMock } from './in-memory-customer-repository/mock/customers-mock'
 import { FactoryCreateCustomer } from '../factories/factory-create-customer'
@@ -26,7 +26,7 @@ describe('use-cases/CreateCustomer', () => {
       }
       const fctCreateCustomer = new FactoryCreateCustomer(customersMock())
       const createCustomer = fctCreateCustomer.execute()
-      const createdCustomer = await createCustomer.create(newCustomer) as ICustomerResponse
+      const createdCustomer = await createCustomer.create(newCustomer) as CustomerResponse
       expect(createdCustomer).toEqual({ ...newCustomer, id: 'testUUID' })
     })
   })

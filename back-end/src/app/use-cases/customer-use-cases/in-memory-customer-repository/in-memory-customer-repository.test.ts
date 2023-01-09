@@ -1,10 +1,10 @@
 import { customersMock } from './mock/customers-mock'
 import { InMemoryCustomerRepository } from './in-memory-customer-repository'
-import { ICustomerRequest } from '../../../repositories/customer-repository'
+import { CustomerRequest } from '../../../repositories/customer-repository'
 
 describe('in-memory-customer-repository', () => {
   it('01 - should return create new customer and return it', async () => {
-    const newCustomer: ICustomerRequest = {
+    const newCustomer: CustomerRequest = {
       id: 'uuid-3',
       name: 'daniel',
       email: 'daniel@email.com',

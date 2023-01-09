@@ -1,9 +1,9 @@
 import { Customer, CustomerProps } from '../../entities/customer'
 import { EmailValidator } from '../../protocols/emailValidator'
-import { ICustomerResponse, CustomerRepository } from '../../repositories/customer-repository'
+import { CustomerResponse, CustomerRepository } from '../../repositories/customer-repository'
 
 export interface ICreateCustomer {
-  create: (newCustomer: CustomerProps) => Promise<ICustomerResponse | Error>
+  create: (newCustomer: CustomerProps) => Promise<CustomerResponse | Error>
 }
 
 export class CreateCustomer implements ICreateCustomer {
@@ -15,7 +15,7 @@ export class CreateCustomer implements ICreateCustomer {
     this.emailValidator = emailValidator
   }
 
-  async create (customerProps: CustomerProps): Promise<ICustomerResponse | Error> {
+  async create (customerProps: CustomerProps): Promise<CustomerResponse | Error> {
     const newCustomer = new Customer(customerProps, this.emailValidator, 'testUUID')
     const error = newCustomer.validate()
     if (error instanceof Error) {

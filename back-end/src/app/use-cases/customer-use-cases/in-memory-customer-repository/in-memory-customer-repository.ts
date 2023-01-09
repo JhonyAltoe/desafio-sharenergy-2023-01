@@ -1,19 +1,19 @@
-import { CustomerRepository, ICustomerResponse, ICustomerRequest } from '../../../repositories/customer-repository'
+import { CustomerRepository, CustomerResponse, CustomerRequest } from '../../../repositories/customer-repository'
 
 export class InMemoryCustomerRepository implements CustomerRepository {
-  customers: ICustomerResponse[] = []
+  customers: CustomerResponse[] = []
 
-  constructor (customers: ICustomerResponse[]) {
+  constructor (customers: CustomerResponse[]) {
     this.customers = customers
   }
 
-  async create (customer: ICustomerRequest): Promise<ICustomerResponse> {
-    this.customers.push(customer as ICustomerResponse)
-    return customer as ICustomerResponse
+  async create (customer: CustomerRequest): Promise<CustomerResponse> {
+    this.customers.push(customer as CustomerResponse)
+    return customer as CustomerResponse
   }
 
   async remove (id: string): Promise<void> {
-    let c: ICustomerResponse
+    let c: CustomerResponse
     for (c of this.customers) {
       if (c.id === id) {
         const customerIndex = this.customers.indexOf(c)
@@ -22,8 +22,8 @@ export class InMemoryCustomerRepository implements CustomerRepository {
     }
   }
 
-  async getByEmail (email: string): Promise<ICustomerResponse | null> {
-    let c: ICustomerResponse
+  async getByEmail (email: string): Promise<CustomerResponse | null> {
+    let c: CustomerResponse
     for (c of this.customers) {
       if (c.email === email) {
         return c
@@ -32,7 +32,7 @@ export class InMemoryCustomerRepository implements CustomerRepository {
     return null
   }
 
-  async update (id: string, customer: Partial<ICustomerRequest>): Promise<ICustomerResponse | null> {
+  async update (id: string, customer: Partial<CustomerRequest>): Promise<CustomerResponse | null> {
     for (let i = 0; i < this.customers.length; i++) {
       if (this.customers[i].id === id) {
         const newCustomer = { ...this.customers[i], ...customer }
