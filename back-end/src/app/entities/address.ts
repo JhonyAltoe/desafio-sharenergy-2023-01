@@ -1,4 +1,4 @@
-export interface IAddress {
+export interface AddressProps {
   city: string
   state: string
   street: string
@@ -6,10 +6,20 @@ export interface IAddress {
   comment: string
 }
 
-export class Address {
-  private readonly props: IAddress
+export interface IAddress {
+  city: string
+  state: string
+  street: string
+  number: string
+  comment: string
+  value: AddressProps
+  validate: () => Error | undefined
+}
 
-  constructor (addressProps: IAddress) {
+export class Address implements IAddress {
+  private readonly props: AddressProps
+
+  constructor (addressProps: AddressProps) {
     this.props = addressProps
   }
 
@@ -65,7 +75,7 @@ export class Address {
     return this.props.comment
   }
 
-  get value (): IAddress {
+  get value (): AddressProps {
     return { ...this.props }
   }
 }

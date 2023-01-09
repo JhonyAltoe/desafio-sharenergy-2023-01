@@ -1,9 +1,9 @@
-import { Address, IAddress } from './address'
+import { Address, AddressProps } from './address'
 
 class FctAddress {
-  addressProp: IAddress
+  addressProp: AddressProps
 
-  constructor (addressProp: IAddress) {
+  constructor (addressProp: AddressProps) {
     this.addressProp = addressProp
   }
 
@@ -12,7 +12,7 @@ class FctAddress {
   }
 }
 
-export const addressValidInfo: IAddress = {
+export const addressValidInfo: AddressProps = {
   city: 'valid_city',
   state: 'VS',
   street: 'valid_street',
