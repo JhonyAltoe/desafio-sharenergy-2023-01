@@ -1,4 +1,4 @@
-import { ICustomerResponse } from '../../../../repositories/customer-repository'
+import { ICustomerResponse } from '../../../repositories/customer-repository'
 
 export const customersMock = (): ICustomerResponse[] => [
   {

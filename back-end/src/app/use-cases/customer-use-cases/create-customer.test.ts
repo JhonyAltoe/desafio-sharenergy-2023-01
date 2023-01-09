@@ -3,8 +3,8 @@ import { fctEmailValidator } from '../../entities/customer.test'
 import { EmailValidator } from '../../protocols/emailValidator'
 import { ICustomerResponse } from '../../repositories/customer-repository'
 import { CreateCustomer, ICreateCustomer } from './create-customer'
-import { InMemoryCustomerRepository } from './in-memory-customer-repository/in-memory-customer-repository'
-import { customersMock } from './in-memory-customer-repository/mock/customers-mock'
+import { InMemoryCustomerRepository } from '../in-memory-customer-repository/in-memory-customer-repository'
+import { customersMock } from '../in-memory-customer-repository/mock/customers-mock'
 
 class FctCreateCustomer {
   customerRepository: InMemoryCustomerRepository

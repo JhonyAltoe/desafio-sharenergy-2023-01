@@ -1,7 +1,6 @@
 import { Customer, CustomerProps } from '../../entities/customer'
 import { EmailValidator } from '../../protocols/emailValidator'
 import { ICustomerResponse, CustomerRepository } from '../../repositories/customer-repository'
-// import { UsecaseError } from '../errors/usecase-error'
 
 export interface ICreateCustomer {
   create: (newCustomer: CustomerProps) => Promise<ICustomerResponse | Error>
