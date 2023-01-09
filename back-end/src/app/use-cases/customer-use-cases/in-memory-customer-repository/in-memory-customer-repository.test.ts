@@ -32,7 +32,7 @@ describe('in-memory-customer-repository', () => {
     expect(shouldBeUndefined).toEqual(undefined)
   })
 
-  it('03 - should return a customer if exists in batabase', async () => {
+  it('03 - should return a customer if exists in database', async () => {
     const customerRepo = new InMemoryCustomerRepository(customersMock())
     const customer = await customerRepo.getByEmail('maria@email.com')
     expect(customer?.name).toBe('maria')
