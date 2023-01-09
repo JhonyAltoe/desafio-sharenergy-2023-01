@@ -3,6 +3,7 @@ import { CustomerResponse } from '../../repositories/customer-repository'
 import { CreateCustomer } from './create-customer'
 import { customersMock } from './in-memory-customer-repository/mock/customers-mock'
 import { FactoryCreateCustomer } from '../factories/factory-create-customer'
+import crypto from 'crypto'
 
 describe('use-cases/CreateCustomer', () => {
   describe('Successful tests', () => {
@@ -24,10 +25,11 @@ describe('use-cases/CreateCustomer', () => {
         },
         phone: '27999997777'
       }
+      jest.spyOn(crypto, 'randomUUID').mockReturnValueOnce('valid-random-uuid')
       const fctCreateCustomer = new FactoryCreateCustomer(customersMock())
       const createCustomer = fctCreateCustomer.execute()
       const createdCustomer = await createCustomer.create(newCustomer) as CustomerResponse
-      expect(createdCustomer).toEqual({ ...newCustomer, id: 'testUUID' })
+      expect(createdCustomer).toEqual({ ...newCustomer, id: 'valid-random-uuid' })
     })
   })
 
