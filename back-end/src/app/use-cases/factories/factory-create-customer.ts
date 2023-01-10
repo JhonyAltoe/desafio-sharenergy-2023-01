@@ -1,4 +1,4 @@
-import { fctEmailValidator } from '../../entities/customer.test'
+import { factoryEmailValidator } from '../../entities/factories-for-testing/factory-email-validator'
 import { EmailValidator } from '../../protocols/emailValidator'
 import { CustomerRepository, CustomerResponse } from '../../repositories/customer-repository'
 import { CreateCustomer, ICreateCustomer } from '../customer-use-cases/create-customer'
@@ -10,7 +10,7 @@ export class FactoryCreateCustomer {
 
   constructor (dbCustomersMock: CustomerResponse[]) {
     this.customerRepository = new InMemoryCustomerRepository(dbCustomersMock)
-    this.emailValidator = fctEmailValidator()
+    this.emailValidator = factoryEmailValidator()
   }
 
   execute (): ICreateCustomer {

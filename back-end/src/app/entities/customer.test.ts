@@ -2,24 +2,15 @@ import { EmailValidator } from '../protocols/emailValidator'
 import { CustomerResponse } from '../repositories/customer-repository'
 import { Customer, CustomerProps } from './customer'
 import { addressValidInfo } from './address.test'
+import { factoryEmailValidator } from './factories-for-testing/factory-email-validator'
 import crypto from 'crypto'
-
-export const fctEmailValidator = (): EmailValidator => {
-  class EmailValidatorStub implements EmailValidator {
-    isValid (_email: string): boolean {
-      return true
-    }
-  }
-  const emailValidatorStub = new EmailValidatorStub()
-  return emailValidatorStub
-}
 
 export class FctCustomer {
   emailValidator: EmailValidator
   customerProp: CustomerProps
 
   constructor (customerProp: CustomerProps) {
-    this.emailValidator = fctEmailValidator()
+    this.emailValidator = factoryEmailValidator()
     this.customerProp = customerProp
   }
 
