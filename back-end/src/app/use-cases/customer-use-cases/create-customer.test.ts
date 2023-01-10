@@ -26,8 +26,8 @@ describe('use-cases/CreateCustomer', () => {
         phone: '27999997777'
       }
       jest.spyOn(crypto, 'randomUUID').mockReturnValueOnce('valid-random-uuid')
-      const fctCreateCustomer = new FactoryCreateCustomer(customersMock())
-      const createCustomer = fctCreateCustomer.execute()
+      const factoryCreateCustomer = new FactoryCreateCustomer(customersMock())
+      const createCustomer = factoryCreateCustomer.execute()
       const createdCustomer = await createCustomer.create(newCustomer) as CustomerResponse
       expect(createdCustomer).toEqual({ ...newCustomer, id: 'valid-random-uuid' })
     })
@@ -48,8 +48,8 @@ describe('use-cases/CreateCustomer', () => {
         },
         phone: '27999997777'
       }
-      const fctCreateCustomer = new FactoryCreateCustomer(customersMock())
-      const createCustomer = fctCreateCustomer.execute()
+      const factoryCreateCustomer = new FactoryCreateCustomer(customersMock())
+      const createCustomer = factoryCreateCustomer.execute()
       const createdCustomer = await createCustomer.create(newCustomer) as Error
       expect(createdCustomer.message).toBe('customer already exists')
     })
@@ -68,8 +68,8 @@ describe('use-cases/CreateCustomer', () => {
         },
         phone: '27999997777'
       }
-      const fctCreateCustomer = new FactoryCreateCustomer(customersMock())
-      const createCustomer = fctCreateCustomer.execute()
+      const factoryCreateCustomer = new FactoryCreateCustomer(customersMock())
+      const createCustomer = factoryCreateCustomer.execute()
       const errorCustomer = await createCustomer.create(newCustomer) as Error
       expect(errorCustomer).toBeInstanceOf(Error)
     })
