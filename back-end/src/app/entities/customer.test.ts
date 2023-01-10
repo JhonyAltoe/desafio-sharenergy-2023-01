@@ -22,8 +22,9 @@ describe('Customer', () => {
     it('01 - should fail when "name" has less than 3 characters', () => {
       const customerInfo = { ...customerValidInfo, name: 'ab' }
       const customer = new FactoryCustomer(customerInfo).execute()
-      expect(customer.validate()).toBeInstanceOf(Error)
-      expect(customer.validate()?.message).toBe('name should have more than 2 characteres')
+      const error = customer.validateCustomer()
+      expect(error).toBeInstanceOf(Error)
+      expect(error?.message).toBe('name should have more than 2 characteres')
     })
 
     it('02 - should fail when pass invalid "email"', () => {
@@ -31,7 +32,7 @@ describe('Customer', () => {
       const factoryCustomer = new FactoryCustomer(customerInfo)
       jest.spyOn(factoryCustomer.emailValidator, 'isValid').mockReturnValueOnce(false)
       const customer = factoryCustomer.execute()
-      const error = customer.validate()
+      const error = customer.validateCustomer()
       expect(error).toBeInstanceOf(Error)
       expect(error?.message).toBe('should be a valid email')
     })
@@ -39,7 +40,7 @@ describe('Customer', () => {
     it('03 - should fail when pass an invalid "phone"', () => {
       const customerInfo = { ...customerValidInfo, phone: 'invalid_phone' }
       const customer = new FactoryCustomer(customerInfo).execute()
-      const error = customer.validate()
+      const error = customer.validateCustomer()
       expect(error).toBeInstanceOf(Error)
       expect(error?.message).toBe('phone should have only numbers')
     })
@@ -49,8 +50,8 @@ describe('Customer', () => {
       const cpfLength12 = { ...customerValidInfo, cpf: '999999999999' }
       const customerLength10 = new FactoryCustomer(cpfLength10).execute()
       const customerLength12 = new FactoryCustomer(cpfLength12).execute()
-      const error10 = customerLength10.validate()
-      const error12 = customerLength12.validate()
+      const error10 = customerLength10.validateCustomer()
+      const error12 = customerLength12.validateCustomer()
       expect(error10).toBeInstanceOf(Error)
       expect(error12).toBeInstanceOf(Error)
       expect(error10?.message).toBe('cpf should have exactly 11 of length')

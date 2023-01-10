@@ -1,5 +1,5 @@
 import { Customer, CustomerProps } from '../../entities/customer'
-import { EmailValidator } from '../../protocols/emailValidator'
+import { CustomerValidator } from '../../entities/validations/customer-validator'
 import { CustomerResponse, CustomerRepository } from '../../repositories/customer-repository'
 
 export interface ICreateCustomer {
@@ -8,16 +8,16 @@ export interface ICreateCustomer {
 
 export class CreateCustomer implements ICreateCustomer {
   private readonly customerRepository: CustomerRepository
-  private readonly emailValidator: EmailValidator
+  private readonly customerValidator: CustomerValidator
 
-  constructor (customerRepository: CustomerRepository, emailValidator: EmailValidator) {
+  constructor (customerRepository: CustomerRepository, customerValidator: CustomerValidator) {
     this.customerRepository = customerRepository
-    this.emailValidator = emailValidator
+    this.customerValidator = customerValidator
   }
 
   async create (customerProps: CustomerProps): Promise<CustomerResponse | Error> {
-    const newCustomer = new Customer(customerProps, this.emailValidator)
-    const error = newCustomer.validate()
+    const newCustomer = new Customer(customerProps, this.customerValidator)
+    const error = newCustomer.validateCustomer()
     if (error instanceof Error) {
       return error
     }

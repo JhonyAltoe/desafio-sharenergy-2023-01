@@ -1,4 +1,5 @@
-import { CustomerResponse, UpdateCustomerProps } from '../../repositories/customer-repository'
+import { PartialCustomerProps } from '../../entities/validations/customer-validator'
+import { CustomerResponse } from '../../repositories/customer-repository'
 import { FactoryUpdateCustomer } from '../factories-for-testing/factory-update-customer'
 import { customersMock } from './in-memory-customer-repository/mock/customers-mock'
 import { UpdateCustomer } from './update-customer'
@@ -10,7 +11,7 @@ describe('use-cases/UpdateCustomer', () => {
     })
 
     it('02 - should return an updated customer', async () => {
-      const updateCustomerProps: UpdateCustomerProps = {
+      const updateCustomerProps: PartialCustomerProps = {
         email: 'joaodasilva@email.com',
         address: { state: 'vitória' }
       }

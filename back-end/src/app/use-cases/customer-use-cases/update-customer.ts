@@ -1,8 +1,9 @@
+import { PartialCustomerProps } from '../../entities/validations/customer-validator'
 import { EmailValidator } from '../../protocols/emailValidator'
-import { CustomerRepository, CustomerResponse, UpdateCustomerProps } from '../../repositories/customer-repository'
+import { CustomerRepository, CustomerResponse } from '../../repositories/customer-repository'
 
 export interface IUpdateCustomer {
-  update: (id: string, customerProps: UpdateCustomerProps) => Promise<CustomerResponse | Error >
+  update: (id: string, customerProps: PartialCustomerProps) => Promise<CustomerResponse | Error >
 }
 
 export class UpdateCustomer implements IUpdateCustomer {
@@ -14,7 +15,7 @@ export class UpdateCustomer implements IUpdateCustomer {
     this.emailValidator = emailValidator
   }
 
-  async update (id: string, customerProps: UpdateCustomerProps): Promise<CustomerResponse | Error> {
+  async update (id: string, customerProps: PartialCustomerProps): Promise<CustomerResponse | Error> {
     const updatedCustomerOrNull = await this.customerRepository.update(id, customerProps)
     if (updatedCustomerOrNull === null) {
       return Error('customer don\'t exists in database')
