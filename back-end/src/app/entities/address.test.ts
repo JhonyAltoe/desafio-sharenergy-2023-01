@@ -50,8 +50,8 @@ describe('Address', () => {
 
     it('03 - should return full address', () => {
       const addressProps = { ...addressValidInfo }
-      const fctAddress = new FactorytAddress(addressProps)
-      const address = fctAddress.execute()
+      const factoryAddress = new FactorytAddress(addressProps)
+      const address = factoryAddress.execute()
       expect(address.value).toEqual(addressValidInfo)
     })
   })
