@@ -1,5 +1,5 @@
 import { GetOneCustomer } from './get-one-customer'
-import { FactoryGetOneCustomer } from '../factories/factory-get-one-customer'
+import { FactoryGetOneCustomer } from '../factories-for-testing/factory-get-one-customer'
 import { customersMock } from './in-memory-customer-repository/mock/customers-mock'
 import { CustomerResponse } from '../../repositories/customer-repository'
 

@@ -2,7 +2,7 @@ import { CustomerProps } from '../../entities/customer'
 import { CustomerResponse } from '../../repositories/customer-repository'
 import { CreateCustomer } from './create-customer'
 import { customersMock } from './in-memory-customer-repository/mock/customers-mock'
-import { FactoryCreateCustomer } from '../factories/factory-create-customer'
+import { FactoryCreateCustomer } from '../factories-for-testing/factory-create-customer'
 import crypto from 'crypto'
 
 describe('use-cases/CreateCustomer', () => {
