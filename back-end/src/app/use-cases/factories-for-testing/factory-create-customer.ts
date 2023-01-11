@@ -1,12 +1,12 @@
 import { factoryEmailValidator } from '../../entities/factories-for-testing/factory-email-validator'
 import { EmailValidator } from '../../protocols/emailValidator'
-import { CustomerRepository, CustomerResponse } from '../../repositories/customer-repository'
+import { CustomerResponse } from '../../repositories/customer-repository'
 import { CreateCustomer, ICreateCustomer } from '../customer-use-cases/create-customer'
 import { InMemoryCustomerRepository } from '../customer-use-cases/in-memory-customer-repository/in-memory-customer-repository'
 import { CustomerValidator } from '../../entities/validations/customer-validator'
 
 export class FactoryCreateCustomer {
-  customerRepository: CustomerRepository
+  customerRepository: InMemoryCustomerRepository
   emailValidator: EmailValidator
   customerValidator: CustomerValidator
 
