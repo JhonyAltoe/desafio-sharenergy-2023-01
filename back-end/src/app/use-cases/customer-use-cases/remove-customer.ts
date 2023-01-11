@@ -1,7 +1,17 @@
+import { CustomerRepository } from '../../repositories/customer-repository'
+
 export interface IRemoveCustomer {
-  remove: () => Promise<void>
+  remove: (id: string) => Promise<void>
 }
 
 export class RemoveCustomer implements IRemoveCustomer {
-  remove: () => Promise<void>
+  private readonly customerRepository: CustomerRepository
+
+  constructor (customerRepository: CustomerRepository) {
+    this.customerRepository = customerRepository
+  }
+
+  async remove (id: string): Promise<void> {
+    await this.customerRepository.remove(id)
+  }
 }
