@@ -1,5 +1,5 @@
 import { PartialCustomerProps } from '../../../domain/entities/validations/customer-validator'
-import { CustomerResponse } from '../../../domain/repositorie-types/customer-repository'
+import { CustomerResponse } from '../../../domain/repositorie-interfaces/customer-repository'
 import { FactoryUpdateCustomer } from '../factories-for-testing/factory-update-customer'
 import { customersMock } from './in-memory-customer-repository/mock/customers-mock'
 import { UpdateCustomer } from './update-customer'

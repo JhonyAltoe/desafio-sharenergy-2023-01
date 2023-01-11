@@ -1,4 +1,4 @@
-import { CustomerResponse } from '../../../domain/repositorie-types/customer-repository'
+import { CustomerResponse } from '../../../domain/repositorie-interfaces/customer-repository'
 import { FactoryGetOneCustomer } from '../factories-for-testing/factory-get-one-customer'
 import { GetOneCustomer } from './get-one-customer'
 import { customersMock } from './in-memory-customer-repository/mock/customers-mock'

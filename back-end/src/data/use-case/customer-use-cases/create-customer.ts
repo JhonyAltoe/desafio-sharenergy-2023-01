@@ -1,7 +1,7 @@
 import { Customer, CustomerProps } from '../../../domain/entities/customer'
 import { CustomerValidator } from '../../../domain/entities/validations/customer-validator'
-import { CustomerRepository, CustomerResponse } from '../../../domain/repositorie-types/customer-repository'
-import { ICreateCustomer } from '../../../domain/use-case-types/customer-use-cases/create-customer'
+import { CustomerRepository, CustomerResponse } from '../../../domain/repositorie-interfaces/customer-repository'
+import { ICreateCustomer } from '../../../domain/use-case-interfaces/customer-use-cases/create-customer'
 
 export class CreateCustomer implements ICreateCustomer {
   private readonly customerRepository: CustomerRepository

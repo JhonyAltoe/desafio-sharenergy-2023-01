@@ -1,5 +1,5 @@
-import { CustomerResponse } from '../../../domain/repositorie-types/customer-repository'
-import { IGetOneCustomer } from '../../../domain/use-case-types/customer-use-cases/get-one-customer'
+import { CustomerResponse } from '../../../domain/repositorie-interfaces/customer-repository'
+import { IGetOneCustomer } from '../../../domain/use-case-interfaces/customer-use-cases/get-one-customer'
 import { GetOneCustomer } from '../customer-use-cases/get-one-customer'
 import { InMemoryCustomerRepository } from '../customer-use-cases/in-memory-customer-repository/in-memory-customer-repository'
 

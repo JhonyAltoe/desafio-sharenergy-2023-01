@@ -1,6 +1,6 @@
 import { ICustomerValidator, PartialCustomerProps } from '../../../domain/entities/validations/customer-validator'
-import { CustomerRepository, CustomerResponse } from '../../../domain/repositorie-types/customer-repository'
-import { IUpdateCustomer } from '../../../domain/use-case-types/customer-use-cases/update-customer'
+import { CustomerRepository, CustomerResponse } from '../../../domain/repositorie-interfaces/customer-repository'
+import { IUpdateCustomer } from '../../../domain/use-case-interfaces/customer-use-cases/update-customer'
 
 export class UpdateCustomer implements IUpdateCustomer {
   private readonly customerRepository: CustomerRepository

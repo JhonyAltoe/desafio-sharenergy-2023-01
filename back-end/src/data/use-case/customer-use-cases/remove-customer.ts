@@ -1,5 +1,5 @@
-import { CustomerRepository } from '../../../domain/repositorie-types/customer-repository'
-import { IRemoveCustomer } from '../../../domain/use-case-types/customer-use-cases/remove-customer'
+import { CustomerRepository } from '../../../domain/repositorie-interfaces/customer-repository'
+import { IRemoveCustomer } from '../../../domain/use-case-interfaces/customer-use-cases/remove-customer'
 
 export class RemoveCustomer implements IRemoveCustomer {
   private readonly customerRepository: CustomerRepository

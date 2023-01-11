@@ -1,4 +1,4 @@
-import { CustomerRequest } from '../repositorie-types/customer-repository'
+import { CustomerRequest } from '../repositorie-interfaces/customer-repository'
 import { Address, AddressProps } from './address'
 import { randomUUID } from 'crypto'
 import { CustomerValidator } from './validations/customer-validator'

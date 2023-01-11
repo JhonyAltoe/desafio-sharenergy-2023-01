@@ -1,7 +1,7 @@
 import { factoryEmailValidator } from '../../../domain/entities/factories-for-testing/factory-email-validator'
 import { CustomerValidator, ICustomerValidator } from '../../../domain/entities/validations/customer-validator'
-import { CustomerResponse } from '../../../domain/repositorie-types/customer-repository'
-import { IUpdateCustomer } from '../../../domain/use-case-types/customer-use-cases/update-customer'
+import { CustomerResponse } from '../../../domain/repositorie-interfaces/customer-repository'
+import { IUpdateCustomer } from '../../../domain/use-case-interfaces/customer-use-cases/update-customer'
 import { InMemoryCustomerRepository } from '../customer-use-cases/in-memory-customer-repository/in-memory-customer-repository'
 import { UpdateCustomer } from '../customer-use-cases/update-customer'
 
