@@ -11,16 +11,31 @@ describe('use-cases/UpdateCustomer', () => {
     })
 
     it('02 - should return an updated customer', async () => {
-      const updateCustomerProps: PartialCustomerProps = {
+      const partialCustomerProps: PartialCustomerProps = {
         email: 'joaodasilva@email.com',
-        address: { state: 'vitória' }
+        address: { state: 'MG' }
       }
 
       const factoryUpdateCustomer = new FactoryUpdateCustomer(customersMock())
       const updateCustomer = factoryUpdateCustomer.execute()
-      const updatedCustomer = await updateCustomer.update('uuid-1', updateCustomerProps) as CustomerResponse
+      const updatedCustomer = await updateCustomer.update('uuid-1', partialCustomerProps) as CustomerResponse
       expect(updatedCustomer.email).toBe('joaodasilva@email.com')
-      expect(updatedCustomer.address.state).toBe('vitória')
+      expect(updatedCustomer.address.state).toBe('MG')
+    })
+  })
+
+  describe('Failure tests', () => {
+    it('01 - should fail when partialCustomerProps is invalid', async () => {
+      const partialCustomerProps: PartialCustomerProps = {
+        email: 'joaodasilva@email.com',
+        address: { state: 'invalid_state' }
+      }
+
+      const factoryUpdateCustomer = new FactoryUpdateCustomer(customersMock())
+      const updateCustomer = factoryUpdateCustomer.execute()
+      const error = await updateCustomer.update('uuid-1', partialCustomerProps) as Error
+      expect(error).toBeInstanceOf(Error)
+      expect(error.message).toBe('state should have exact 2 charaters')
     })
   })
 })
