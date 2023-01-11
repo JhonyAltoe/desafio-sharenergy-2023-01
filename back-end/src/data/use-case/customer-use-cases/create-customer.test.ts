@@ -1,9 +1,9 @@
-import { CustomerProps } from '../../entities/customer'
-import { CustomerResponse } from '../../repositories/customer-repository'
-import { CreateCustomer } from './create-customer'
-import { customersMock } from './in-memory-customer-repository/mock/customers-mock'
-import { FactoryCreateCustomer } from '../factories-for-testing/factory-create-customer'
 import crypto from 'crypto'
+import { CreateCustomer } from './create-customer'
+import { CustomerProps } from '../../../domain/entities/customer'
+import { customersMock } from './in-memory-customer-repository/mock/customers-mock'
+import { CustomerResponse } from '../../../domain/repositorie-types/customer-repository'
+import { FactoryCreateCustomer } from '../factories-for-testing/factory-create-customer'
 
 describe('use-cases/CreateCustomer', () => {
   describe('Successful tests', () => {

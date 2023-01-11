@@ -1,7 +1,7 @@
-import { GetOneCustomer } from './get-one-customer'
+import { CustomerResponse } from '../../../domain/repositorie-types/customer-repository'
 import { FactoryGetOneCustomer } from '../factories-for-testing/factory-get-one-customer'
+import { GetOneCustomer } from './get-one-customer'
 import { customersMock } from './in-memory-customer-repository/mock/customers-mock'
-import { CustomerResponse } from '../../repositories/customer-repository'
 
 describe('use-cases/GetOneCustomer', () => {
   describe('Successful tests', () => {

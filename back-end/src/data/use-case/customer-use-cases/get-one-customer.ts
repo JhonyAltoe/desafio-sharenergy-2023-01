@@ -1,8 +1,5 @@
-import { CustomerRepository, CustomerResponse } from '../../repositories/customer-repository'
-
-export interface IGetOneCustomer {
-  getOne: (email: string) => Promise<CustomerResponse | Error >
-}
+import { CustomerRepository, CustomerResponse } from '../../../domain/repositorie-types/customer-repository'
+import { IGetOneCustomer } from '../../../domain/use-case-types/customer-use-cases/get-one-customer'
 
 export class GetOneCustomer implements IGetOneCustomer {
   private readonly customerRepository: CustomerRepository

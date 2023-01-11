@@ -1,6 +1,6 @@
 import { customersMock } from './mock/customers-mock'
 import { InMemoryCustomerRepository } from './in-memory-customer-repository'
-import { CustomerRequest } from '../../../repositories/customer-repository'
+import { CustomerRequest } from '../../../../domain/repositorie-types/customer-repository'
 
 describe('in-memory-customer-repository', () => {
   it('01 - should return create new customer and return it', async () => {

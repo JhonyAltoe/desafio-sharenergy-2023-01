@@ -1,10 +1,7 @@
-import { Customer, CustomerProps } from '../../entities/customer'
-import { CustomerValidator } from '../../entities/validations/customer-validator'
-import { CustomerResponse, CustomerRepository } from '../../repositories/customer-repository'
-
-export interface ICreateCustomer {
-  create: (newCustomer: CustomerProps) => Promise<CustomerResponse | Error>
-}
+import { Customer, CustomerProps } from '../../../domain/entities/customer'
+import { CustomerValidator } from '../../../domain/entities/validations/customer-validator'
+import { CustomerRepository, CustomerResponse } from '../../../domain/repositorie-types/customer-repository'
+import { ICreateCustomer } from '../../../domain/use-case-types/customer-use-cases/create-customer'
 
 export class CreateCustomer implements ICreateCustomer {
   private readonly customerRepository: CustomerRepository

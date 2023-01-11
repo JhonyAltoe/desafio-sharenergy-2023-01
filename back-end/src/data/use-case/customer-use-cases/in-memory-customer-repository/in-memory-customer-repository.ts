@@ -1,4 +1,4 @@
-import { CustomerRepository, CustomerResponse, CustomerRequest } from '../../../repositories/customer-repository'
+import { CustomerRepository, CustomerRequest, CustomerResponse } from '../../../../domain/repositorie-types/customer-repository'
 
 export class InMemoryCustomerRepository implements CustomerRepository {
   customers: CustomerResponse[] = []

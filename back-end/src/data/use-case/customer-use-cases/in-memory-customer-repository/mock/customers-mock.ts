@@ -1,4 +1,4 @@
-import { CustomerResponse } from '../../../../repositories/customer-repository'
+import { CustomerResponse } from '../../../../../domain/repositorie-types/customer-repository'
 
 export const customersMock = (): CustomerResponse[] => [
   {

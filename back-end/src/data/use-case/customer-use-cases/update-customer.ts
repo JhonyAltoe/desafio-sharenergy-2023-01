@@ -1,9 +1,6 @@
-import { ICustomerValidator, PartialCustomerProps } from '../../entities/validations/customer-validator'
-import { CustomerRepository, CustomerResponse } from '../../repositories/customer-repository'
-
-export interface IUpdateCustomer {
-  update: (id: string, customerProps: PartialCustomerProps) => Promise<CustomerResponse | Error >
-}
+import { ICustomerValidator, PartialCustomerProps } from '../../../domain/entities/validations/customer-validator'
+import { CustomerRepository, CustomerResponse } from '../../../domain/repositorie-types/customer-repository'
+import { IUpdateCustomer } from '../../../domain/use-case-types/customer-use-cases/update-customer'
 
 export class UpdateCustomer implements IUpdateCustomer {
   private readonly customerRepository: CustomerRepository

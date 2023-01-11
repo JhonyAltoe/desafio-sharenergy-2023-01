@@ -1,8 +1,5 @@
-import { CustomerRepository } from '../../repositories/customer-repository'
-
-export interface IRemoveCustomer {
-  remove: (id: string) => Promise<void>
-}
+import { CustomerRepository } from '../../../domain/repositorie-types/customer-repository'
+import { IRemoveCustomer } from '../../../domain/use-case-types/customer-use-cases/remove-customer'
 
 export class RemoveCustomer implements IRemoveCustomer {
   private readonly customerRepository: CustomerRepository

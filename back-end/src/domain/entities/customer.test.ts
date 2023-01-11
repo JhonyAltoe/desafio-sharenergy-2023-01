@@ -1,4 +1,4 @@
-import { CustomerResponse } from '../repositories/customer-repository'
+import { CustomerResponse } from '../repositorie-types/customer-repository'
 import { CustomerProps } from './customer'
 import { addressValidInfo } from './address.test'
 import crypto from 'crypto'
