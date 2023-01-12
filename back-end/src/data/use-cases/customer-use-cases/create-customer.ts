@@ -1,13 +1,13 @@
 import { Customer, CustomerProps } from '../../../domain/entities/customer'
-import { CustomerValidator } from '../../../domain/entities/validations/customer-validator'
+import { ICustomerValidator } from '../../../domain/entities/validations/customer-validator'
 import { CustomerRepository, CustomerResponse } from '../../../domain/repositorie-interfaces/customer-repository'
 import { ICreateCustomer } from '../../../domain/use-case-interfaces/customer-use-cases/create-customer'
 
 export class CreateCustomer implements ICreateCustomer {
   private readonly customerRepository: CustomerRepository
-  private readonly customerValidator: CustomerValidator
+  private readonly customerValidator: ICustomerValidator
 
-  constructor (customerRepository: CustomerRepository, customerValidator: CustomerValidator) {
+  constructor (customerRepository: CustomerRepository, customerValidator: ICustomerValidator) {
     this.customerRepository = customerRepository
     this.customerValidator = customerValidator
   }
