@@ -4,6 +4,14 @@ export function badRequest (error: Error): HttpResponse {
   return { statusCode: 400, body: { message: error.message } }
 }
 
-export function ok (data: any, statusCode?: number): HttpResponse {
-  return { statusCode: statusCode ?? 200, body: { data } }
+export function ok (data?: any, message?: string, statusCode?: number): HttpResponse {
+  const response = {
+    statusCode: statusCode ?? 200,
+    body: {}
+  }
+
+  if (data !== null) response.body = { ...response.body, data }
+  if (message !== null) response.body = { ...response.body, message }
+
+  return response
 }
