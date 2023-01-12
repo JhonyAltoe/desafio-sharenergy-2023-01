@@ -12,7 +12,7 @@ const customerValidInfo: CustomerProps = {
   cpf: '99999999999'
 }
 
-const customerResponse: CustomerResponse = {
+export const customerResponse: CustomerResponse = {
   ...customerValidInfo,
   id: 'valid-random-uuid'
 }
