@@ -41,7 +41,6 @@ describe('CreateCustomerController', () => {
       const createCustomerController = new FactoryCreateCustomerController(customersMock()).execute()
       jest.spyOn(crypto, 'randomUUID').mockReturnValueOnce('valid-random-uuid')
       const customerResponse = await createCustomerController.handler(request)
-      console.log(customerResponse)
       expect(customerResponse.statusCode).toEqual(200)
       expect(customerResponse.body).toEqual({ data: customerResponseMock })
     })
