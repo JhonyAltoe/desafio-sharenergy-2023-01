@@ -15,3 +15,8 @@ export function ok (data?: any, message?: string, statusCode?: number): HttpResp
 
   return response
 }
+
+export const notFound = (error: Error): HttpResponse => ({
+  statusCode: 404,
+  body: { message: error.message }
+})
