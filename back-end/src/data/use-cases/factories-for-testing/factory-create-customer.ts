@@ -1,5 +1,5 @@
 import { factoryEmailValidator } from '../../../domain/entities/factories-for-testing/factory-email-validator'
-import { CustomerValidator } from '../../../domain/entities/validations/customer-validator'
+import { CustomerValidator, ICustomerValidator } from '../../../domain/entities/validations/customer-validator'
 import { EmailValidator } from '../../../domain/protocols/emailValidator'
 import { CustomerResponse } from '../../../domain/repositorie-interfaces/customer-repository'
 import { ICreateCustomer } from '../../../domain/use-case-interfaces/customer-use-cases/create-customer'
@@ -9,7 +9,7 @@ import { InMemoryCustomerRepository } from '../customer-use-cases/in-memory-cust
 export class FactoryCreateCustomer {
   customerRepository: InMemoryCustomerRepository
   emailValidator: EmailValidator
-  customerValidator: CustomerValidator
+  customerValidator: ICustomerValidator
 
   constructor (dbCustomersMock: CustomerResponse[]) {
     this.customerRepository = new InMemoryCustomerRepository(dbCustomersMock)

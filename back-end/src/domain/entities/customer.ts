@@ -1,7 +1,7 @@
 import { CustomerRequest } from '../repositorie-interfaces/customer-repository'
 import { Address, AddressProps } from './address'
 import { randomUUID } from 'crypto'
-import { CustomerValidator } from './validations/customer-validator'
+import { ICustomerValidator } from './validations/customer-validator'
 
 export interface CustomerProps {
   name: string
@@ -24,9 +24,9 @@ export interface ICustomer {
 export class Customer implements ICustomer {
   private readonly _id: string
   private readonly props: CustomerProps
-  private readonly customerValidator: CustomerValidator
+  private readonly customerValidator: ICustomerValidator
 
-  constructor (props: CustomerProps, customerValidator: CustomerValidator, id?: string) {
+  constructor (props: CustomerProps, customerValidator: ICustomerValidator, id?: string) {
     this._id = id ?? randomUUID()
     this.props = { ...props, address: new Address(props.address).value }
     this.customerValidator = customerValidator
