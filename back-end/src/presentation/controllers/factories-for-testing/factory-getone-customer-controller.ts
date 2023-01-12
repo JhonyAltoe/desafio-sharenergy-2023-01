@@ -5,9 +5,9 @@ import { Controller } from '../../protocols/controller'
 import { GetOneCustomerController } from '../customer-controllers/get-one-customer-controller'
 
 export class FactoryGetOneCustomerController {
-  private readonly getOneCustomer: IGetOneCustomer
+  getOneCustomer: IGetOneCustomer
 
-  constructor (mock?: CustomerResponse) {
+  constructor (mock?: CustomerResponse | Error) {
     this.getOneCustomer = {
       async getOne (_email) {
         return customerResponse ?? mock
