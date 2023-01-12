@@ -72,6 +72,7 @@ describe('use-cases/CreateCustomer', () => {
       const createCustomer = factoryCreateCustomer.execute()
       const errorCustomer = await createCustomer.create(newCustomer) as Error
       expect(errorCustomer).toBeInstanceOf(Error)
+      expect(errorCustomer.message).toBe('cpf should have exactly 11 of length')
     })
   })
 })
