@@ -6,7 +6,7 @@ import { Controller } from '../../protocols/controller'
 import { HttpRequest, HttpResponse } from '../../protocols/http'
 
 export class CreateCustomerController implements Controller {
-  createCustomer: ICreateCustomer
+  private readonly createCustomer: ICreateCustomer
 
   constructor (createCustomer: ICreateCustomer) {
     this.createCustomer = createCustomer
