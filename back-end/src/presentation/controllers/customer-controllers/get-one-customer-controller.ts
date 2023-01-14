@@ -9,8 +9,8 @@ import { HttpRequest, HttpResponse } from '../../protocols/http'
 export class GetOneCustomerController implements Controller {
   private readonly getOneCustomer: IGetOneCustomer
 
-  constructor (createCustomer: IGetOneCustomer) {
-    this.getOneCustomer = createCustomer
+  constructor (getOneCustomer: IGetOneCustomer) {
+    this.getOneCustomer = getOneCustomer
   }
 
   async handler (httpRequest: HttpRequest): Promise<HttpResponse> {
