@@ -3,6 +3,6 @@ import { customerRoute } from './customer.routes'
 
 const router = express.Router()
 
-router.use('/cliente', customerRoute)
+router.use('/customer', customerRoute)
 
 export { router }

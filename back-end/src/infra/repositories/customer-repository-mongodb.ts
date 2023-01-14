@@ -40,4 +40,9 @@ export class CustomerRepositoryMongodb implements CustomerRepository {
     }
     return false
   }
+
+  async getAll (): Promise<CustomerResponse[]> {
+    const customers = await this.model.find({})
+    return customers
+  }
 }

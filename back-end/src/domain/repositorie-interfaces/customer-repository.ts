@@ -15,4 +15,5 @@ export interface CustomerRepository {
   getByEmail: (email: string) => Promise<CustomerResponse | null>
   update: (id: string, customer: PartialCustomerProps) => Promise<CustomerResponse | null>
   exists: (email: string) => Promise<Boolean>
+  getAll: () => Promise<CustomerResponse[]>
 }

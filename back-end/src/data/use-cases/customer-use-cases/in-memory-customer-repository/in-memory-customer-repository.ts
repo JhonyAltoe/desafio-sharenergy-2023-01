@@ -46,4 +46,8 @@ export class InMemoryCustomerRepository implements CustomerRepository {
   async exists (email: string): Promise<Boolean> {
     return this.customers.some((c) => c.email === email)
   }
+
+  async getAll (): Promise<CustomerResponse[]> {
+    return this.customers
+  }
 }
