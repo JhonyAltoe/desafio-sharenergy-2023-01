@@ -1,25 +1,19 @@
 import { Schema } from 'mongoose'
-import { CustomerProps } from '../../domain/entities/customer'
-import { AddressProps } from '../../domain/entities/address'
+import { CustomerResponse } from '../../domain/repositorie-interfaces/customer-repository'
 
-const addressMongooseSchema = new Schema<AddressProps>({
+const address = {
   city: String,
   state: String,
   street: String,
   number: String,
   comment: String
-})
+}
 
-export const customerMongooseSchema = new Schema<CustomerProps>({
+export const customerMongooseSchema = new Schema<CustomerResponse>({
+  _id: String,
   name: String,
   email: String,
   phone: String,
-  address: addressMongooseSchema,
+  address,
   cpf: String
 }, { versionKey: false })
-
-// class CustomerModel extends BaseModel<CustomerProps> {
-//   constructor (model = mongooseCreateModel('customers', customerMongooseSchema)) {
-//     super(model)
-//   }
-// }
