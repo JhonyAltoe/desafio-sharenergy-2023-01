@@ -26,7 +26,7 @@ export class CustomerRepositoryMongodb implements CustomerRepository {
   }
 
   async update (id: string, customer: PartialCustomerProps): Promise<CustomerResponse | null> {
-    const updated = await this.model.findByIdAndUpdate({ id }, { ...customer }, { new: true })
+    const updated = await this.model.findByIdAndUpdate({ _id: id }, { ...customer }, { new: true })
     if (updated === (undefined ?? null)) {
       return null
     }

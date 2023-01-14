@@ -16,7 +16,6 @@ export class UpdateCustomer implements IUpdateCustomer {
     if (errorOrUndefined instanceof Error) {
       return errorOrUndefined
     }
-
     const updatedCustomerOrNull = await this.customerRepository.update(id, customerProps)
     if (updatedCustomerOrNull === null) {
       return Error('customer don\'t exists in database')
