@@ -15,11 +15,12 @@ export class GetOneCustomerController implements Controller {
 
   async handler (httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
-      if (httpRequest.param === (undefined ?? '')) {
+      const { param } = httpRequest
+      if ([undefined, ''].some((e) => e === param.email)) {
         return badRequest(new MissingParamError('email'))
       }
 
-      const customerOrError = await this.getOneCustomer.getOne(httpRequest.param)
+      const customerOrError = await this.getOneCustomer.getOne(param.email)
       if (customerOrError instanceof Error) {
         return notFound(new NotFound(customerOrError))
       }
