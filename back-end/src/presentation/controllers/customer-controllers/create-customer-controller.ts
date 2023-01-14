@@ -6,6 +6,23 @@ import { isCustomerEmpty } from '../../helpers/isCustomerEmpty'
 import { Controller } from '../../protocols/controller'
 import { HttpRequest, HttpResponse } from '../../protocols/http'
 
+/*
+  REQUEST EXAMPLE
+  body: {
+    "name": "jhony",
+    "email": "jhony@email.com",
+    "phone": "27995065211",
+    "address": {
+      "city": "serra",
+      "state": "es",
+      "street": "rua das laranjas",
+      "number": "22",
+      "comment": ""
+    },
+    "cpf": "99999999999"
+  }
+*/
+
 export class CreateCustomerController implements Controller {
   private readonly createCustomer: ICreateCustomer
 
