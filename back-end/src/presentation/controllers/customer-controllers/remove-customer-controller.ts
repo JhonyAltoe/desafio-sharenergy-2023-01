@@ -21,6 +21,7 @@ export class RemoveCustomerController implements Controller {
       await this.removeCustomer.remove(httpRequest.param)
       return ok()
     } catch (error) {
+      console.log(error)
       return serverError(new ServerError('internal server error'))
     }
   }
