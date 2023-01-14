@@ -29,7 +29,7 @@ describe('use-cases/CreateCustomer', () => {
       const factoryCreateCustomer = new FactoryCreateCustomer(customersMock())
       const createCustomer = factoryCreateCustomer.execute()
       const createdCustomer = await createCustomer.create(newCustomer) as CustomerResponse
-      expect(createdCustomer).toEqual({ ...newCustomer, id: 'valid-random-uuid' })
+      expect(createdCustomer).toEqual({ ...newCustomer, _id: 'valid-random-uuid' })
     })
   })
 

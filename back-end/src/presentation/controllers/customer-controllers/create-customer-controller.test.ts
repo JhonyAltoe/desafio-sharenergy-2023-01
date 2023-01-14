@@ -24,7 +24,7 @@ const customerValidInfo: CustomerProps = {
 
 const customerResponseMock: CustomerResponse = {
   ...customerValidInfo,
-  id: 'valid-random-uuid'
+  _id: 'valid-random-uuid'
 }
 
 describe('CreateCustomerController', () => {

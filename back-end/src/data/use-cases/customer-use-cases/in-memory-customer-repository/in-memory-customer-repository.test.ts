@@ -5,7 +5,7 @@ import { CustomerRequest } from '../../../../domain/repositorie-interfaces/custo
 describe('in-memory-customer-repository', () => {
   it('01 - should return create new customer and return it', async () => {
     const newCustomer: CustomerRequest = {
-      id: 'uuid-3',
+      _id: 'uuid-3',
       name: 'daniel',
       email: 'daniel@email.com',
       cpf: '77777777777',
@@ -27,7 +27,7 @@ describe('in-memory-customer-repository', () => {
   it('02 - should remove a customer', async () => {
     const customerRepo = new InMemoryCustomerRepository(customersMock())
     await customerRepo.remove('uuid-1')
-    const shouldBeUndefined = customerRepo.customers.find((c) => c.id === 'uuid-1')
+    const shouldBeUndefined = customerRepo.customers.find((c) => c._id === 'uuid-1')
     expect(customerRepo.customers.length).toBe(1)
     expect(shouldBeUndefined).toEqual(undefined)
   })

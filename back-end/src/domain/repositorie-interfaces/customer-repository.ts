@@ -2,11 +2,11 @@ import { CustomerProps } from '../entities/customer'
 import { PartialCustomerProps } from '../entities/validations/customer-validator'
 
 export interface CustomerRequest extends CustomerProps {
-  id?: string
+  _id?: string
 }
 
 export interface CustomerResponse extends CustomerProps {
-  id: string
+  _id: string
 }
 
 export interface CustomerRepository {

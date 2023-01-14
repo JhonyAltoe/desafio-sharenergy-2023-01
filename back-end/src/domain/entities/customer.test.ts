@@ -14,7 +14,7 @@ const customerValidInfo: CustomerProps = {
 
 export const customerResponse: CustomerResponse = {
   ...customerValidInfo,
-  id: 'valid-random-uuid'
+  _id: 'valid-random-uuid'
 }
 
 describe('Customer', () => {

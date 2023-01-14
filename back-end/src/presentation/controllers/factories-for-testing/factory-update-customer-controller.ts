@@ -5,7 +5,7 @@ import { Controller } from '../../protocols/controller'
 import { UpdateCustomerController } from '../customer-controllers/update-customer-controller'
 
 export const customerResponse: CustomerResponse = {
-  id: 'valid-random-uuid',
+  _id: 'valid-random-uuid',
   name: 'joao',
   email: 'joaodasilva@email.com',
   cpf: '77777777777',

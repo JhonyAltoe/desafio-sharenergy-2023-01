@@ -2,7 +2,7 @@ import { CustomerResponse } from '../../../../../domain/repositorie-interfaces/c
 
 export const customersMock = (): CustomerResponse[] => [
   {
-    id: 'uuid-1',
+    _id: 'uuid-1',
     name: 'joao',
     email: 'joao@email.com',
     cpf: '99999999999',
@@ -16,7 +16,7 @@ export const customersMock = (): CustomerResponse[] => [
     phone: '27999998888'
   },
   {
-    id: 'uuid-2',
+    _id: 'uuid-2',
     name: 'maria',
     email: 'maria@email.com',
     cpf: '88888888888',

@@ -15,7 +15,7 @@ export class InMemoryCustomerRepository implements CustomerRepository {
   async remove (id: string): Promise<void> {
     let c: CustomerResponse
     for (c of this.customers) {
-      if (c.id === id) {
+      if (c._id === id) {
         const customerIndex = this.customers.indexOf(c)
         this.customers.splice(customerIndex, 1)
       }
@@ -34,7 +34,7 @@ export class InMemoryCustomerRepository implements CustomerRepository {
 
   async update (id: string, customer: Partial<CustomerRequest>): Promise<CustomerResponse | null> {
     for (let i = 0; i < this.customers.length; i++) {
-      if (this.customers[i].id === id) {
+      if (this.customers[i]._id === id) {
         const newCustomer = { ...this.customers[i], ...customer }
         this.customers[i] = newCustomer
         return this.customers[i]

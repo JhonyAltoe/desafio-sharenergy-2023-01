@@ -61,6 +61,6 @@ export class Customer implements ICustomer {
   }
 
   get value (): CustomerRequest {
-    return { ...this.props, id: this._id }
+    return { ...this.props, _id: this._id }
   }
 }
