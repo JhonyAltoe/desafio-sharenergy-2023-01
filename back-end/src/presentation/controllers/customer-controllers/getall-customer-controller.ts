@@ -17,7 +17,7 @@ export class GetAllCustomerController implements Controller {
 
       return ok(customerOrError)
     } catch (error) {
-      console.log(error)
+      console.error(error)
       return serverError(new ServerError('internal server error'))
     }
   }

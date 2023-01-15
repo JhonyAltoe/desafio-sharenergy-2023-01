@@ -13,6 +13,6 @@ export function isAuth (req: Request, res: Response): void {
     res.status(200).json({ message: true })
   } catch (error) {
     console.error(error)
-    res.status(401).json({ message: false })
+    res.status(200).json({ message: false })
   }
 }
