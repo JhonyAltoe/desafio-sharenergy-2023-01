@@ -1,15 +1,12 @@
 import express from 'express'
 import { connectToDatabase } from './infra/repositories/connect'
 import { router } from './main/routes/router'
+import cors from 'cors'
 
 const app = express()
 
+app.use(cors())
 app.use(express.json())
-
-// route.get('/', (_req: Request, res: Response) => {
-//   res.json({ message: 'hello world with Typescript' })
-// })
-
 app.use(router)
 
 connectToDatabase()
