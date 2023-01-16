@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import {
-  Button, Checkbox, FormControlLabel, FormHelperText, Grid, TextField,
+  Button, Checkbox, FormControlLabel, FormHelperText, Grid, TextField, Typography,
 } from '@mui/material';
 import { CustonPaper } from './styles/loginField-styles';
 
@@ -11,7 +11,9 @@ export default function LoginField({
     <CustonPaper elevation={10}>
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <h2>Projeto Sharenergy</h2>
+          <Typography align="center" variant="h5" component="h2" fontWeight={500}>
+            Projeto Sharenergy
+          </Typography>
         </Grid>
         <Grid item xs={12}>
           <TextField
