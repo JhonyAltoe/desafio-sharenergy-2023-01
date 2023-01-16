@@ -34,7 +34,7 @@ const card = (user) => (
 
 export default function UserCard({ user }) {
   return (
-    <BoxCard key={user.uuid} elevation={6}>
+    <BoxCard elevation={6}>
       <Card variant="outlined">{card(user)}</Card>
     </BoxCard>
   );
@@ -47,6 +47,5 @@ UserCard.propTypes = {
     email: PropTypes.string.isRequired,
     username: PropTypes.string.isRequired,
     age: PropTypes.number.isRequired,
-    uuid: PropTypes.string.isRequired,
   }),
 };

@@ -8,25 +8,31 @@ import { CustonCircularProgress, CustonContainer, Sentinel } from './styles/user
 export default function UserList() {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
-  const [page, setPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const fetchLisOfUsers = async (pagePosition) => {
-    const position = pagePosition + 1;
-    const { data: d, page: p } = await randomUserFetch(position);
-    setData([...data, ...d]);
-    setPage(p);
-  };
+  useEffect(() => {
+    const fetchLisOfUsers = async (page) => {
+      const { data: newData } = await randomUserFetch(page);
+      if (page === 0) return;
+      if (data !== newData) {
+        setData((prevData) => ([...prevData, ...newData]));
+      }
+    };
+
+    fetchLisOfUsers(currentPage);
+  }, [currentPage]);
 
   useEffect(() => {
     verifyIfAuthenticated(navigate);
     const intersectionObserver = new IntersectionObserver((entries) => {
       if (entries.some(((entry) => entry.isIntersecting))) {
         setLoading(true);
-        fetchLisOfUsers(page);
+        setCurrentPage((prevPage) => (prevPage + 1));
       }
     });
+
     intersectionObserver.observe(document.querySelector('#sentinel'));
     return () => intersectionObserver.disconnect();
   }, []);
@@ -36,7 +42,6 @@ export default function UserList() {
       name, email, login, dob, picture,
     }) => {
       const user = {
-        uuid: login.uuid,
         picture: picture.medium,
         fullName: `${name.title} ${name.first} ${name.last}`,
         email,
@@ -46,13 +51,13 @@ export default function UserList() {
       return <UserCard key={login.uuid} user={user} />;
     });
 
-    setUsers((prevUsers) => [...prevUsers, newUsers]);
+    setUsers(newUsers);
     setLoading(false);
   }, [data]);
 
   return (
     <>
-      <h1>{page}</h1>
+      <h1>{currentPage}</h1>
       <CustonContainer>
         {users}
       </CustonContainer>
