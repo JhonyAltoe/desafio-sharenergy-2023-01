@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoginField from '../../components/loginField/LoginField';
 import { CustonContainer } from './styles/login-styles';
-import { isAuthenticated, login } from '../../apis/sharenergy-api';
+import { isAuthFetch, loginFetch } from '../../apis/sharenergy-api';
 import { getLocalStorage, setLocalStorage } from '../../helpers/localStorageHelpers';
 import { setSessionStorage } from '../../helpers/sessionStorageHelpers';
 
@@ -15,7 +15,7 @@ export default function Login() {
     const navigateIfAuthentidated = async () => {
       const token = getLocalStorage('auth');
       if (!token) return;
-      const bool = await isAuthenticated(token);
+      const bool = await isAuthFetch(token);
       if (bool) {
         navigate('/lista-de-usuarios');
       }
@@ -32,7 +32,7 @@ export default function Login() {
     }
 
     try {
-      const data = await login(email, password);
+      const data = await loginFetch(email, password);
       if (formLogin.rememberMe) setLocalStorage('auth', data.token);
       else setSessionStorage('auth', data.token);
       navigate('/lista-de-usuarios');
