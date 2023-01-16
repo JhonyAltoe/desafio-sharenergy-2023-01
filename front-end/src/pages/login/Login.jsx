@@ -4,6 +4,7 @@ import LoginField from '../../components/loginField/LoginField';
 import { CustonContainer } from './styles/login-styles';
 import { isAuthenticated, login } from '../../apis/sharenergy-api';
 import { getLocalStorage, setLocalStorage } from '../../helpers/localStorageHelpers';
+import { setSessionStorage } from '../../helpers/sessionStorageHelpers';
 
 export default function Login() {
   const [formLogin, setFormLogin] = useState({ email: '', password: '', rememberMe: false });
@@ -22,12 +23,6 @@ export default function Login() {
     navigateIfAuthentidated();
   }, []);
 
-  useEffect(() => {
-    let rememberMe = getLocalStorage('rememberMe');
-    if (rememberMe === null) rememberMe = false;
-    setFormLogin({ ...formLogin, rememberMe });
-  }, []);
-
   const handlerLogin = async () => {
     setLocalStorage('rememberMe', formLogin.rememberMe);
     const { email, password } = formLogin;
@@ -38,7 +33,8 @@ export default function Login() {
 
     try {
       const data = await login(email, password);
-      setLocalStorage('auth', data.token);
+      if (formLogin.rememberMe) setLocalStorage('auth', data.token);
+      else setSessionStorage('auth', data.token);
       navigate('/lista-de-usuarios');
     } catch (error) {
       setMessageAlert('Email ou senha inválidos');
@@ -47,7 +43,6 @@ export default function Login() {
 
   const handlerForm = (e) => {
     const { name, value, checked } = e.target;
-
     setFormLogin({
       ...formLogin,
       [name]: name === 'rememberMe' ? checked : value,
