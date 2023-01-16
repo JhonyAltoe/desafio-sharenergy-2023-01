@@ -4,13 +4,16 @@ import { verifyIfAuthenticated } from '../../helpers/verifyIfAuthenticated';
 import { randomUserFetch } from '../../apis/randomuser-api';
 import UserCard from '../../components/userCard/UserCard';
 import { CustonCircularProgress, CustonContainer, Sentinel } from './styles/userList-styles';
+import SearchField from './components/searchField/SearchField';
+import Header from '../../components/header/Header';
 
 export default function UserList() {
-  const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [search, setSearch] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     verifyIfAuthenticated(navigate);
@@ -37,8 +40,15 @@ export default function UserList() {
     fetchLisOfUsers(currentPage);
   }, [currentPage]);
 
+  const filterUsersAndReturn = (searchParam) => data.filter(({ name, email, login }) => {
+    if (!searchParam) return true;
+    const string = `${name.title} ${name.first} ${name.last} ${email} ${login.username}`;
+    return string.toLocaleLowerCase().match(searchParam.toLocaleLowerCase());
+  });
+
   useEffect(() => {
-    const newUsers = data.map(({
+    const filteredData = filterUsersAndReturn(search);
+    const newUsers = filteredData.map(({
       name, email, login, dob, picture,
     }) => {
       const user = {
@@ -53,11 +63,14 @@ export default function UserList() {
 
     setUsers(newUsers);
     setLoading(false);
-  }, [data]);
+  }, [data, search]);
+
+  const handlerSearch = (searchParam) => setSearch(searchParam);
 
   return (
     <>
-      <h1>{currentPage}</h1>
+      <Header />
+      <SearchField handlerSearch={handlerSearch} />
       <CustonContainer>
         {users}
       </CustonContainer>

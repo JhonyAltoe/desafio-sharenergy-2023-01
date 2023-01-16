@@ -37,6 +37,7 @@ export default function LoginField({
             fullWidth
             onChange={handlerForm}
             value={formLogin.password}
+            type="password"
           />
           <FormHelperText error>{messageAlert}</FormHelperText>
         </Grid>
