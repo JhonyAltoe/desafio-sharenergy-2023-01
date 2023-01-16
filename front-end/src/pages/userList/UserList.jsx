@@ -13,18 +13,6 @@ export default function UserList() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const fetchLisOfUsers = async (page) => {
-      const { data: newData } = await randomUserFetch(page);
-      if (page === 0) return;
-      if (data !== newData) {
-        setData((prevData) => ([...prevData, ...newData]));
-      }
-    };
-
-    fetchLisOfUsers(currentPage);
-  }, [currentPage]);
-
-  useEffect(() => {
     verifyIfAuthenticated(navigate);
     const intersectionObserver = new IntersectionObserver((entries) => {
       if (entries.some(((entry) => entry.isIntersecting))) {
@@ -36,6 +24,18 @@ export default function UserList() {
     intersectionObserver.observe(document.querySelector('#sentinel'));
     return () => intersectionObserver.disconnect();
   }, []);
+
+  useEffect(() => {
+    const fetchLisOfUsers = async (page) => {
+      const { data: newData } = await randomUserFetch(page);
+      if (page === 0) return;
+      if (data !== newData) {
+        setData((prevData) => ([...prevData, ...newData]));
+      }
+    };
+
+    fetchLisOfUsers(currentPage);
+  }, [currentPage]);
 
   useEffect(() => {
     const newUsers = data.map(({
