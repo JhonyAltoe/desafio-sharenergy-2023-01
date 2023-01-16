@@ -1,34 +1,67 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import LoginField from '../../components/loginField/LoginField';
 import { CustonContainer } from './styles/login-styles';
-import { login } from '../../apis/sharenergy-api';
-import { setLocalStorage } from '../../helpers/localStorageHelpers';
+import { isAuthenticated, login } from '../../apis/sharenergy-api';
+import { getLocalStorage, setLocalStorage } from '../../helpers/localStorageHelpers';
 
 export default function Login() {
-  const [formLogin, setformLogin] = useState({ email: '', password: '' });
+  const [formLogin, setFormLogin] = useState({ email: '', password: '', rememberMe: false });
+  const [messageAlert, setMessageAlert] = useState();
+  const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   login(email, password).then((result) => {
-  //     console.log('>>>>>>', result);
-  //   }).catch((error) => {
-  //     console.log('catch >>>>>', error);
-  //   });
-  // }, []);
+  useEffect(() => {
+    const navigateIfAuthentidated = async () => {
+      const token = getLocalStorage('auth');
+      if (!token) return;
+      const bool = await isAuthenticated(token);
+      if (bool) {
+        navigate('/lista-de-usuarios');
+      }
+    };
+    navigateIfAuthentidated();
+  }, []);
+
+  useEffect(() => {
+    let rememberMe = getLocalStorage('rememberMe');
+    if (rememberMe === null) rememberMe = false;
+    setFormLogin({ ...formLogin, rememberMe });
+  }, []);
 
   const handlerLogin = async () => {
+    setLocalStorage('rememberMe', formLogin.rememberMe);
     const { email, password } = formLogin;
-    const data = await login(email, password);
-    setLocalStorage('auth', data.token);
+    if (!email ?? !password) {
+      setMessageAlert('Usuário ou senha não podem estar vazios');
+      return;
+    }
+
+    try {
+      const data = await login(email, password);
+      setLocalStorage('auth', data.token);
+      navigate('/lista-de-usuarios');
+    } catch (error) {
+      setMessageAlert('Email ou senha inválidos');
+    }
   };
 
-  const handlerForm = ({ target }) => {
-    const { name, value } = target;
-    setformLogin({ ...formLogin, [name]: value });
+  const handlerForm = (e) => {
+    const { name, value, checked } = e.target;
+
+    setFormLogin({
+      ...formLogin,
+      [name]: name === 'rememberMe' ? checked : value,
+    });
   };
 
   return (
     <CustonContainer>
-      <LoginField handlerForm={handlerForm} formLogin={formLogin} handlerLogin={handlerLogin} />
+      <LoginField
+        handlerForm={handlerForm}
+        formLogin={formLogin}
+        handlerLogin={handlerLogin}
+        messageAlert={messageAlert}
+      />
     </CustonContainer>
   );
 }

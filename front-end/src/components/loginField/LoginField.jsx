@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types';
 import {
-  Button, Checkbox, FormControlLabel, Grid, TextField,
+  Button, Checkbox, FormControlLabel, FormHelperText, Grid, TextField,
 } from '@mui/material';
 import { CustonPaper } from './styles/loginField-styles';
 
-export default function LoginField({ handlerForm, formLogin, handlerLogin }) {
+export default function LoginField({
+  handlerForm, formLogin, handlerLogin, messageAlert,
+}) {
   return (
     <CustonPaper elevation={10}>
       <Grid container spacing={2}>
@@ -34,9 +36,13 @@ export default function LoginField({ handlerForm, formLogin, handlerLogin }) {
             onChange={handlerForm}
             value={formLogin.password}
           />
+          <FormHelperText error>{messageAlert}</FormHelperText>
         </Grid>
         <Grid item xs={12}>
-          <FormControlLabel control={<Checkbox name="remember-me" />} label="Lembrar-me" />
+          <FormControlLabel
+            control={<Checkbox name="rememberMe" checked={handlerForm.rememberMe} onClick={handlerForm} />}
+            label="Lembrar-me"
+          />
         </Grid>
         <Grid item xs={12}>
           <Button fullWidth variant="contained" onClick={handlerLogin}>Login</Button>
@@ -51,6 +57,8 @@ LoginField.propTypes = {
   formLogin: PropTypes.shape({
     email: PropTypes.string,
     password: PropTypes.string,
+    rememberMe: PropTypes.bool,
   }).isRequired,
   handlerLogin: PropTypes.func.isRequired,
+  messageAlert: PropTypes.string,
 };
