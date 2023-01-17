@@ -9,12 +9,16 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-const pages = [{ page: 'Lista de usuários', path: '/lista-de-usuarios' }];
+const pages = [
+  { page: 'Lista de usuários', path: '/lista-de-usuarios' },
+  { page: 'Http Cats', path: '/http-cats' },
+];
 
 export default function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -22,6 +26,11 @@ export default function ResponsiveAppBar() {
 
   const handleCloseNavMenuAndNavigate = () => {
     setAnchorElNav(null);
+  };
+
+  const handlerExit = () => {
+    localStorage.clear();
+    navigate('/login');
   };
 
   return (
@@ -38,6 +47,7 @@ export default function ResponsiveAppBar() {
                 <Link style={{ textDecoration: 'none', color: 'white' }} to={path}>{page}</Link>
               </Button>
             ))}
+            <Button variant="text" sx={{ color: 'white', fontWeight: 900 }} onClick={handlerExit}>Sair</Button>
           </Box>
 
           <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
@@ -74,6 +84,7 @@ export default function ResponsiveAppBar() {
                   <Typography textAlign="center"><Link to={path} style={{ textDecoration: 'none', color: 'black' }}>{page}</Link></Typography>
                 </MenuItem>
               ))}
+              <Button onClick={handlerExit}>Sair</Button>
             </Menu>
           </Box>
         </Toolbar>
